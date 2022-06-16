@@ -80,7 +80,7 @@ class BigQueryWriteClientTest extends GeneratedTest
     public function appendRowsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -92,16 +92,16 @@ class BigQueryWriteClientTest extends GeneratedTest
         $expectedResponse3 = new AppendRowsResponse();
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $formattedWriteStream = $client->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $formattedWriteStream = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
         $request = new AppendRowsRequest();
         $request->setWriteStream($formattedWriteStream);
-        $formattedWriteStream2 = $client->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $formattedWriteStream2 = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
         $request2 = new AppendRowsRequest();
         $request2->setWriteStream($formattedWriteStream2);
-        $formattedWriteStream3 = $client->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $formattedWriteStream3 = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
         $request3 = new AppendRowsRequest();
         $request3->setWriteStream($formattedWriteStream3);
-        $bidi = $client->appendRows();
+        $bidi = $gapicClient->appendRows();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
         $responses = [];
@@ -143,7 +143,7 @@ class BigQueryWriteClientTest extends GeneratedTest
     public function appendRowsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $status = new stdClass();
@@ -157,7 +157,7 @@ class BigQueryWriteClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
-        $bidi = $client->appendRows();
+        $bidi = $gapicClient->appendRows();
         $results = $bidi->closeWriteAndReadAll();
         try {
             iterator_to_array($results);
@@ -178,7 +178,7 @@ class BigQueryWriteClientTest extends GeneratedTest
     public function batchCommitWriteStreamsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -186,9 +186,9 @@ class BigQueryWriteClientTest extends GeneratedTest
         $expectedResponse = new BatchCommitWriteStreamsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
         $writeStreams = [];
-        $response = $client->batchCommitWriteStreams($formattedParent, $writeStreams);
+        $response = $gapicClient->batchCommitWriteStreams($formattedParent, $writeStreams);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -208,7 +208,7 @@ class BigQueryWriteClientTest extends GeneratedTest
     public function batchCommitWriteStreamsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -223,11 +223,11 @@ class BigQueryWriteClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
         $writeStreams = [];
         try {
-            $client->batchCommitWriteStreams($formattedParent, $writeStreams);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->batchCommitWriteStreams($formattedParent, $writeStreams);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -244,7 +244,7 @@ class BigQueryWriteClientTest extends GeneratedTest
     public function createWriteStreamTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -254,9 +254,9 @@ class BigQueryWriteClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
         $writeStream = new WriteStream();
-        $response = $client->createWriteStream($formattedParent, $writeStream);
+        $response = $gapicClient->createWriteStream($formattedParent, $writeStream);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -276,7 +276,7 @@ class BigQueryWriteClientTest extends GeneratedTest
     public function createWriteStreamExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -291,11 +291,11 @@ class BigQueryWriteClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
+        $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
         $writeStream = new WriteStream();
         try {
-            $client->createWriteStream($formattedParent, $writeStream);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createWriteStream($formattedParent, $writeStream);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -312,7 +312,7 @@ class BigQueryWriteClientTest extends GeneratedTest
     public function finalizeWriteStreamTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -322,8 +322,8 @@ class BigQueryWriteClientTest extends GeneratedTest
         $expectedResponse->setRowCount($rowCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
-        $response = $client->finalizeWriteStream($formattedName);
+        $formattedName = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $response = $gapicClient->finalizeWriteStream($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -341,7 +341,7 @@ class BigQueryWriteClientTest extends GeneratedTest
     public function finalizeWriteStreamExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -356,10 +356,10 @@ class BigQueryWriteClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $formattedName = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
         try {
-            $client->finalizeWriteStream($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->finalizeWriteStream($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -376,7 +376,7 @@ class BigQueryWriteClientTest extends GeneratedTest
     public function flushRowsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -386,8 +386,8 @@ class BigQueryWriteClientTest extends GeneratedTest
         $expectedResponse->setOffset($offset2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedWriteStream = $client->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
-        $response = $client->flushRows($formattedWriteStream);
+        $formattedWriteStream = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $response = $gapicClient->flushRows($formattedWriteStream);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -405,7 +405,7 @@ class BigQueryWriteClientTest extends GeneratedTest
     public function flushRowsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -420,10 +420,10 @@ class BigQueryWriteClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedWriteStream = $client->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $formattedWriteStream = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
         try {
-            $client->flushRows($formattedWriteStream);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->flushRows($formattedWriteStream);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -440,7 +440,7 @@ class BigQueryWriteClientTest extends GeneratedTest
     public function getWriteStreamTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -450,8 +450,8 @@ class BigQueryWriteClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
-        $response = $client->getWriteStream($formattedName);
+        $formattedName = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $response = $gapicClient->getWriteStream($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -469,7 +469,7 @@ class BigQueryWriteClientTest extends GeneratedTest
     public function getWriteStreamExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -484,10 +484,10 @@ class BigQueryWriteClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $formattedName = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
         try {
-            $client->getWriteStream($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getWriteStream($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

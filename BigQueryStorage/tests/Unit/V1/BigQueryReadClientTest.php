@@ -76,7 +76,7 @@ class BigQueryReadClientTest extends GeneratedTest
     public function createReadSessionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -92,9 +92,9 @@ class BigQueryReadClientTest extends GeneratedTest
         $expectedResponse->setTraceId($traceId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $readSession = new ReadSession();
-        $response = $client->createReadSession($formattedParent, $readSession);
+        $response = $gapicClient->createReadSession($formattedParent, $readSession);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -114,7 +114,7 @@ class BigQueryReadClientTest extends GeneratedTest
     public function createReadSessionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -129,11 +129,11 @@ class BigQueryReadClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $readSession = new ReadSession();
         try {
-            $client->createReadSession($formattedParent, $readSession);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createReadSession($formattedParent, $readSession);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -150,7 +150,7 @@ class BigQueryReadClientTest extends GeneratedTest
     public function readRowsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -168,8 +168,8 @@ class BigQueryReadClientTest extends GeneratedTest
         $expectedResponse3->setRowCount($rowCount3);
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $formattedReadStream = $client->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
-        $serverStream = $client->readRows($formattedReadStream);
+        $formattedReadStream = $gapicClient->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
+        $serverStream = $gapicClient->readRows($formattedReadStream);
         $this->assertInstanceOf(ServerStream::class, $serverStream);
         $responses = iterator_to_array($serverStream->readAll());
         $expectedResponses = [];
@@ -193,7 +193,7 @@ class BigQueryReadClientTest extends GeneratedTest
     public function readRowsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $status = new stdClass();
@@ -208,8 +208,8 @@ class BigQueryReadClientTest extends GeneratedTest
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
         // Mock request
-        $formattedReadStream = $client->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
-        $serverStream = $client->readRows($formattedReadStream);
+        $formattedReadStream = $gapicClient->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
+        $serverStream = $gapicClient->readRows($formattedReadStream);
         $results = $serverStream->readAll();
         try {
             iterator_to_array($results);
@@ -230,7 +230,7 @@ class BigQueryReadClientTest extends GeneratedTest
     public function splitReadStreamTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -238,8 +238,8 @@ class BigQueryReadClientTest extends GeneratedTest
         $expectedResponse = new SplitReadStreamResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
-        $response = $client->splitReadStream($formattedName);
+        $formattedName = $gapicClient->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
+        $response = $gapicClient->splitReadStream($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -257,7 +257,7 @@ class BigQueryReadClientTest extends GeneratedTest
     public function splitReadStreamExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -272,10 +272,10 @@ class BigQueryReadClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
+        $formattedName = $gapicClient->readStreamName('[PROJECT]', '[LOCATION]', '[SESSION]', '[STREAM]');
         try {
-            $client->splitReadStream($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->splitReadStream($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
