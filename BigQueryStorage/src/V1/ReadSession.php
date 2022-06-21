@@ -31,7 +31,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      */
     private $expire_time = null;
     /**
-     * Immutable. Data format of the output data.
+     * Immutable. Data format of the output data. DATA_FORMAT_UNSPECIFIED not supported.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.DataFormat data_format = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -99,7 +99,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
      *           requests to read this Session will return errors. The expire_time is
      *           automatically assigned and currently cannot be specified or updated.
      *     @type int $data_format
-     *           Immutable. Data format of the output data.
+     *           Immutable. Data format of the output data. DATA_FORMAT_UNSPECIFIED not supported.
      *     @type \Google\Cloud\BigQuery\Storage\V1\AvroSchema $avro_schema
      *           Output only. Avro schema.
      *     @type \Google\Cloud\BigQuery\Storage\V1\ArrowSchema $arrow_schema
@@ -203,7 +203,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Data format of the output data.
+     * Immutable. Data format of the output data. DATA_FORMAT_UNSPECIFIED not supported.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.DataFormat data_format = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return int
@@ -214,7 +214,7 @@ class ReadSession extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. Data format of the output data.
+     * Immutable. Data format of the output data. DATA_FORMAT_UNSPECIFIED not supported.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.DataFormat data_format = 3 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param int $var

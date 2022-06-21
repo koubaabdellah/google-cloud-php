@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Schema of a table.
+ * Schema of a table. This schema is a subset of
+ * google.cloud.bigquery.v2.TableSchema containing information necessary to
+ * generate valid message to write to BigQuery.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.storage.v1.TableSchema</code>
  */

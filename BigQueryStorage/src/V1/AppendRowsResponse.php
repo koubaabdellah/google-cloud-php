@@ -23,6 +23,14 @@ class AppendRowsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.TableSchema updated_schema = 3;</code>
      */
     private $updated_schema = null;
+    /**
+     * If a request failed due to corrupted rows, no rows in the batch will be
+     * appended. The API will return row level error info, so that the caller can
+     * remove the bad rows and retry the request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.RowError row_errors = 4;</code>
+     */
+    private $row_errors;
     protected $response;
 
     /**
@@ -52,6 +60,10 @@ class AppendRowsResponse extends \Google\Protobuf\Internal\Message
      *           If backend detects a schema update, pass it to user so that user can
      *           use it to input new type of message. It will be empty when no schema
      *           updates have occurred.
+     *     @type \Google\Cloud\BigQuery\Storage\V1\RowError[]|\Google\Protobuf\Internal\RepeatedField $row_errors
+     *           If a request failed due to corrupted rows, no rows in the batch will be
+     *           appended. The API will return row level error info, so that the caller can
+     *           remove the bad rows and retry the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -183,6 +195,36 @@ class AppendRowsResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Storage\V1\TableSchema::class);
         $this->updated_schema = $var;
+
+        return $this;
+    }
+
+    /**
+     * If a request failed due to corrupted rows, no rows in the batch will be
+     * appended. The API will return row level error info, so that the caller can
+     * remove the bad rows and retry the request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.RowError row_errors = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRowErrors()
+    {
+        return $this->row_errors;
+    }
+
+    /**
+     * If a request failed due to corrupted rows, no rows in the batch will be
+     * appended. The API will return row level error info, so that the caller can
+     * remove the bad rows and retry the request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.RowError row_errors = 4;</code>
+     * @param \Google\Cloud\BigQuery\Storage\V1\RowError[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRowErrors($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BigQuery\Storage\V1\RowError::class);
+        $this->row_errors = $arr;
 
         return $this;
     }

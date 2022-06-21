@@ -12,5 +12,5 @@ if (false) {
     class RowError_RowErrorCode {}
 }
 class_exists(RowError\RowErrorCode::class);
-@trigger_error('Google\Cloud\BigQuery\Storage\V1\RowError_RowErrorCode is deprecated and will be removed in the next major release. Use Google\Cloud\BigQuery\Storage\V1\RowError\RowErrorCode instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\BigQuery\Storage\V1\RowError_RowErrorCode is deprecated and will be removed in a future release. Use Google\Cloud\BigQuery\Storage\V1\RowError\RowErrorCode instead', E_USER_DEPRECATED);
 
