@@ -16,13 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Partition extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. The values must be HTML URL encoded two times before constructing the path.
-     * For example, if you have a value of "US:CA", encoded it two times and you
-     * get "US%253ACA". Then if you have the 2nd value is "CA#Sunnyvale", encoded
-     * two times and you get "CA%2523Sunnyvale". The partition values path is
-     * "US%253ACA/CA%2523Sunnyvale". The final URL will be
-     * "https://.../partitions/US%253ACA/CA%2523Sunnyvale". The name field in the
-     * responses will always have the encoded format.
+     * Output only. Partition values used in the HTTP URL must be
+     * double encoded. For example, `url_encode(url_encode(value))` can be used
+     * to encode "US:CA/CA#Sunnyvale so that the request URL ends
+     * with "/partitions/US%253ACA/CA%2523Sunnyvale".
+     * The name field in the response retains the encoded format.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -57,13 +55,11 @@ class Partition extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Output only. The values must be HTML URL encoded two times before constructing the path.
-     *           For example, if you have a value of "US:CA", encoded it two times and you
-     *           get "US%253ACA". Then if you have the 2nd value is "CA#Sunnyvale", encoded
-     *           two times and you get "CA%2523Sunnyvale". The partition values path is
-     *           "US%253ACA/CA%2523Sunnyvale". The final URL will be
-     *           "https://.../partitions/US%253ACA/CA%2523Sunnyvale". The name field in the
-     *           responses will always have the encoded format.
+     *           Output only. Partition values used in the HTTP URL must be
+     *           double encoded. For example, `url_encode(url_encode(value))` can be used
+     *           to encode "US:CA/CA#Sunnyvale so that the request URL ends
+     *           with "/partitions/US%253ACA/CA%2523Sunnyvale".
+     *           The name field in the response retains the encoded format.
      *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
      *           Required. Immutable. The set of values representing the partition, which correspond to the
      *           partition schema defined in the parent entity.
@@ -81,13 +77,11 @@ class Partition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The values must be HTML URL encoded two times before constructing the path.
-     * For example, if you have a value of "US:CA", encoded it two times and you
-     * get "US%253ACA". Then if you have the 2nd value is "CA#Sunnyvale", encoded
-     * two times and you get "CA%2523Sunnyvale". The partition values path is
-     * "US%253ACA/CA%2523Sunnyvale". The final URL will be
-     * "https://.../partitions/US%253ACA/CA%2523Sunnyvale". The name field in the
-     * responses will always have the encoded format.
+     * Output only. Partition values used in the HTTP URL must be
+     * double encoded. For example, `url_encode(url_encode(value))` can be used
+     * to encode "US:CA/CA#Sunnyvale so that the request URL ends
+     * with "/partitions/US%253ACA/CA%2523Sunnyvale".
+     * The name field in the response retains the encoded format.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -98,13 +92,11 @@ class Partition extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The values must be HTML URL encoded two times before constructing the path.
-     * For example, if you have a value of "US:CA", encoded it two times and you
-     * get "US%253ACA". Then if you have the 2nd value is "CA#Sunnyvale", encoded
-     * two times and you get "CA%2523Sunnyvale". The partition values path is
-     * "US%253ACA/CA%2523Sunnyvale". The final URL will be
-     * "https://.../partitions/US%253ACA/CA%2523Sunnyvale". The name field in the
-     * responses will always have the encoded format.
+     * Output only. Partition values used in the HTTP URL must be
+     * double encoded. For example, `url_encode(url_encode(value))` can be used
+     * to encode "US:CA/CA#Sunnyvale so that the request URL ends
+     * with "/partitions/US%253ACA/CA%2523Sunnyvale".
+     * The name field in the response retains the encoded format.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

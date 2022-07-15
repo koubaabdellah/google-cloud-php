@@ -54,6 +54,10 @@ use Google\Cloud\Dataplex\V1\Task\ExecutionSpec;
 use Google\Cloud\Dataplex\V1\Task\TriggerSpec;
 use Google\Cloud\Dataplex\V1\Zone;
 use Google\Cloud\Dataplex\V1\Zone\ResourceSpec\LocationType;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\Any;
@@ -102,7 +106,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function cancelJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -110,8 +114,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
-        $client->cancelJob($formattedName);
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
+        $gapicClient->cancelJob($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -128,7 +132,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function cancelJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -143,10 +147,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
         try {
-            $client->cancelJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->cancelJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -169,7 +173,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -197,14 +201,14 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
         $assetId = 'assetId-373202742';
         $asset = new Asset();
         $assetResourceSpec = new ResourceSpec();
         $resourceSpecType = Type::TYPE_UNSPECIFIED;
         $assetResourceSpec->setType($resourceSpecType);
         $asset->setResourceSpec($assetResourceSpec);
-        $response = $client->createAsset($formattedParent, $assetId, $asset);
+        $response = $gapicClient->createAsset($formattedParent, $assetId, $asset);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -251,7 +255,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -273,14 +277,14 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
         $assetId = 'assetId-373202742';
         $asset = new Asset();
         $assetResourceSpec = new ResourceSpec();
         $resourceSpecType = Type::TYPE_UNSPECIFIED;
         $assetResourceSpec->setType($resourceSpecType);
         $asset->setResourceSpec($assetResourceSpec);
-        $response = $client->createAsset($formattedParent, $assetId, $asset);
+        $response = $gapicClient->createAsset($formattedParent, $assetId, $asset);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -314,7 +318,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -342,7 +346,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         $environmentId = 'environmentId608412359';
         $environment = new Environment();
         $environmentInfrastructureSpec = new InfrastructureSpec();
@@ -351,7 +355,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $infrastructureSpecOsImage->setImageVersion($osImageImageVersion);
         $environmentInfrastructureSpec->setOsImage($infrastructureSpecOsImage);
         $environment->setInfrastructureSpec($environmentInfrastructureSpec);
-        $response = $client->createEnvironment($formattedParent, $environmentId, $environment);
+        $response = $gapicClient->createEnvironment($formattedParent, $environmentId, $environment);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -398,7 +402,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -420,7 +424,7 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         $environmentId = 'environmentId608412359';
         $environment = new Environment();
         $environmentInfrastructureSpec = new InfrastructureSpec();
@@ -429,7 +433,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $infrastructureSpecOsImage->setImageVersion($osImageImageVersion);
         $environmentInfrastructureSpec->setOsImage($infrastructureSpecOsImage);
         $environment->setInfrastructureSpec($environmentInfrastructureSpec);
-        $response = $client->createEnvironment($formattedParent, $environmentId, $environment);
+        $response = $gapicClient->createEnvironment($formattedParent, $environmentId, $environment);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -463,7 +467,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -493,10 +497,10 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $lakeId = 'lakeId-54902325';
         $lake = new Lake();
-        $response = $client->createLake($formattedParent, $lakeId, $lake);
+        $response = $gapicClient->createLake($formattedParent, $lakeId, $lake);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -543,7 +547,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -565,10 +569,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $lakeId = 'lakeId-54902325';
         $lake = new Lake();
-        $response = $client->createLake($formattedParent, $lakeId, $lake);
+        $response = $gapicClient->createLake($formattedParent, $lakeId, $lake);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -602,7 +606,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -630,7 +634,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         $taskId = 'taskId-1537240555';
         $task = new Task();
         $taskTriggerSpec = new TriggerSpec();
@@ -641,7 +645,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $executionSpecServiceAccount = 'executionSpecServiceAccount-1249728629';
         $taskExecutionSpec->setServiceAccount($executionSpecServiceAccount);
         $task->setExecutionSpec($taskExecutionSpec);
-        $response = $client->createTask($formattedParent, $taskId, $task);
+        $response = $gapicClient->createTask($formattedParent, $taskId, $task);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -688,7 +692,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -710,7 +714,7 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         $taskId = 'taskId-1537240555';
         $task = new Task();
         $taskTriggerSpec = new TriggerSpec();
@@ -721,7 +725,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $executionSpecServiceAccount = 'executionSpecServiceAccount-1249728629';
         $taskExecutionSpec->setServiceAccount($executionSpecServiceAccount);
         $task->setExecutionSpec($taskExecutionSpec);
-        $response = $client->createTask($formattedParent, $taskId, $task);
+        $response = $gapicClient->createTask($formattedParent, $taskId, $task);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -755,7 +759,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -783,7 +787,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         $zoneId = 'zoneId-111174002';
         $zone = new Zone();
         $zoneType = \Google\Cloud\Dataplex\V1\Zone\Type::TYPE_UNSPECIFIED;
@@ -792,7 +796,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $resourceSpecLocationType = LocationType::LOCATION_TYPE_UNSPECIFIED;
         $zoneResourceSpec->setLocationType($resourceSpecLocationType);
         $zone->setResourceSpec($zoneResourceSpec);
-        $response = $client->createZone($formattedParent, $zoneId, $zone);
+        $response = $gapicClient->createZone($formattedParent, $zoneId, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -839,7 +843,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -861,7 +865,7 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         $zoneId = 'zoneId-111174002';
         $zone = new Zone();
         $zoneType = \Google\Cloud\Dataplex\V1\Zone\Type::TYPE_UNSPECIFIED;
@@ -870,7 +874,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $resourceSpecLocationType = LocationType::LOCATION_TYPE_UNSPECIFIED;
         $zoneResourceSpec->setLocationType($resourceSpecLocationType);
         $zone->setResourceSpec($zoneResourceSpec);
-        $response = $client->createZone($formattedParent, $zoneId, $zone);
+        $response = $gapicClient->createZone($formattedParent, $zoneId, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -904,7 +908,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -924,8 +928,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
-        $response = $client->deleteAsset($formattedName);
+        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
+        $response = $gapicClient->deleteAsset($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -968,7 +972,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -990,8 +994,8 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
-        $response = $client->deleteAsset($formattedName);
+        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
+        $response = $gapicClient->deleteAsset($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1025,7 +1029,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1045,8 +1049,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
-        $response = $client->deleteEnvironment($formattedName);
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
+        $response = $gapicClient->deleteEnvironment($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1089,7 +1093,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1111,8 +1115,8 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
-        $response = $client->deleteEnvironment($formattedName);
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
+        $response = $gapicClient->deleteEnvironment($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1146,7 +1150,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1166,8 +1170,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $response = $client->deleteLake($formattedName);
+        $formattedName = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $response = $gapicClient->deleteLake($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1210,7 +1214,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1232,8 +1236,8 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $response = $client->deleteLake($formattedName);
+        $formattedName = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $response = $gapicClient->deleteLake($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1267,7 +1271,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1287,8 +1291,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-        $response = $client->deleteTask($formattedName);
+        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $response = $gapicClient->deleteTask($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1331,7 +1335,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1353,8 +1357,8 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-        $response = $client->deleteTask($formattedName);
+        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $response = $gapicClient->deleteTask($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1388,7 +1392,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1408,8 +1412,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $response = $client->deleteZone($formattedName);
+        $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $response = $gapicClient->deleteZone($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1452,7 +1456,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1474,8 +1478,8 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $response = $client->deleteZone($formattedName);
+        $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $response = $gapicClient->deleteZone($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1503,7 +1507,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function getAssetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1519,8 +1523,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
-        $response = $client->getAsset($formattedName);
+        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
+        $response = $gapicClient->getAsset($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1538,7 +1542,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function getAssetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1553,10 +1557,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
+        $formattedName = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
         try {
-            $client->getAsset($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getAsset($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1573,7 +1577,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function getEnvironmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1589,8 +1593,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
-        $response = $client->getEnvironment($formattedName);
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
+        $response = $gapicClient->getEnvironment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1608,7 +1612,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function getEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1623,10 +1627,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
+        $formattedName = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
         try {
-            $client->getEnvironment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEnvironment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1643,7 +1647,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function getJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1661,8 +1665,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setMessage($message);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
-        $response = $client->getJob($formattedName);
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
+        $response = $gapicClient->getJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1680,7 +1684,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function getJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1695,10 +1699,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]', '[JOB]');
         try {
-            $client->getJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1715,7 +1719,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function getLakeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1733,8 +1737,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $response = $client->getLake($formattedName);
+        $formattedName = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $response = $gapicClient->getLake($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1752,7 +1756,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function getLakeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1767,10 +1771,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedName = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         try {
-            $client->getLake($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getLake($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1787,7 +1791,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function getTaskTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1803,8 +1807,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-        $response = $client->getTask($formattedName);
+        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $response = $gapicClient->getTask($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1822,7 +1826,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function getTaskExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1837,10 +1841,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $formattedName = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
         try {
-            $client->getTask($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getTask($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1857,7 +1861,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function getZoneTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1873,8 +1877,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $response = $client->getZone($formattedName);
+        $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $response = $gapicClient->getZone($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1892,7 +1896,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function getZoneExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1907,10 +1911,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $formattedName = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
         try {
-            $client->getZone($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getZone($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1927,7 +1931,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listAssetActionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1942,8 +1946,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setActions($actions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
-        $response = $client->listAssetActions($formattedParent);
+        $formattedParent = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
+        $response = $gapicClient->listAssetActions($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1964,7 +1968,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listAssetActionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1979,10 +1983,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
+        $formattedParent = $gapicClient->assetName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]', '[ASSET]');
         try {
-            $client->listAssetActions($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listAssetActions($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1999,7 +2003,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listAssetsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2014,8 +2018,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setAssets($assets);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $response = $client->listAssets($formattedParent);
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $response = $gapicClient->listAssets($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2036,7 +2040,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listAssetsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2051,10 +2055,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
         try {
-            $client->listAssets($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listAssets($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2071,7 +2075,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listEnvironmentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2086,8 +2090,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setEnvironments($environments);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $response = $client->listEnvironments($formattedParent);
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $response = $gapicClient->listEnvironments($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2108,7 +2112,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listEnvironmentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2123,10 +2127,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         try {
-            $client->listEnvironments($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listEnvironments($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2143,7 +2147,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2158,8 +2162,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
-        $response = $client->listJobs($formattedParent);
+        $formattedParent = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $response = $gapicClient->listJobs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2180,7 +2184,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2195,10 +2199,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
+        $formattedParent = $gapicClient->taskName('[PROJECT]', '[LOCATION]', '[LAKE]', '[TASK]');
         try {
-            $client->listJobs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listJobs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2215,7 +2219,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listLakeActionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2230,8 +2234,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setActions($actions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $response = $client->listLakeActions($formattedParent);
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $response = $gapicClient->listLakeActions($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2252,7 +2256,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listLakeActionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2267,10 +2271,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         try {
-            $client->listLakeActions($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listLakeActions($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2287,7 +2291,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listLakesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2302,8 +2306,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setLakes($lakes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listLakes($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listLakes($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2324,7 +2328,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listLakesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2339,10 +2343,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listLakes($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listLakes($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2359,7 +2363,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listSessionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2374,8 +2378,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setSessions($sessions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
-        $response = $client->listSessions($formattedParent);
+        $formattedParent = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
+        $response = $gapicClient->listSessions($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2396,7 +2400,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listSessionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2411,10 +2415,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
+        $formattedParent = $gapicClient->environmentName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ENVIRONMENT]');
         try {
-            $client->listSessions($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSessions($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2431,7 +2435,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listTasksTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2446,8 +2450,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setTasks($tasks);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $response = $client->listTasks($formattedParent);
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $response = $gapicClient->listTasks($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2468,7 +2472,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listTasksExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2483,10 +2487,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         try {
-            $client->listTasks($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTasks($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2503,7 +2507,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listZoneActionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2518,8 +2522,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setActions($actions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
-        $response = $client->listZoneActions($formattedParent);
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $response = $gapicClient->listZoneActions($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2540,7 +2544,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listZoneActionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2555,10 +2559,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
+        $formattedParent = $gapicClient->zoneName('[PROJECT]', '[LOCATION]', '[LAKE]', '[ZONE]');
         try {
-            $client->listZoneActions($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listZoneActions($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2575,7 +2579,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listZonesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2590,8 +2594,8 @@ class DataplexServiceClientTest extends GeneratedTest
         $expectedResponse->setZones($zones);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
-        $response = $client->listZones($formattedParent);
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $response = $gapicClient->listZones($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2612,7 +2616,7 @@ class DataplexServiceClientTest extends GeneratedTest
     public function listZonesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2627,10 +2631,10 @@ class DataplexServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
+        $formattedParent = $gapicClient->lakeName('[PROJECT]', '[LOCATION]', '[LAKE]');
         try {
-            $client->listZones($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listZones($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2653,7 +2657,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2687,7 +2691,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $resourceSpecType = Type::TYPE_UNSPECIFIED;
         $assetResourceSpec->setType($resourceSpecType);
         $asset->setResourceSpec($assetResourceSpec);
-        $response = $client->updateAsset($updateMask, $asset);
+        $response = $gapicClient->updateAsset($updateMask, $asset);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2732,7 +2736,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2760,7 +2764,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $resourceSpecType = Type::TYPE_UNSPECIFIED;
         $assetResourceSpec->setType($resourceSpecType);
         $asset->setResourceSpec($assetResourceSpec);
-        $response = $client->updateAsset($updateMask, $asset);
+        $response = $gapicClient->updateAsset($updateMask, $asset);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2794,7 +2798,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2830,7 +2834,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $infrastructureSpecOsImage->setImageVersion($osImageImageVersion);
         $environmentInfrastructureSpec->setOsImage($infrastructureSpecOsImage);
         $environment->setInfrastructureSpec($environmentInfrastructureSpec);
-        $response = $client->updateEnvironment($updateMask, $environment);
+        $response = $gapicClient->updateEnvironment($updateMask, $environment);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2875,7 +2879,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2905,7 +2909,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $infrastructureSpecOsImage->setImageVersion($osImageImageVersion);
         $environmentInfrastructureSpec->setOsImage($infrastructureSpecOsImage);
         $environment->setInfrastructureSpec($environmentInfrastructureSpec);
-        $response = $client->updateEnvironment($updateMask, $environment);
+        $response = $gapicClient->updateEnvironment($updateMask, $environment);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2939,7 +2943,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2971,7 +2975,7 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $lake = new Lake();
-        $response = $client->updateLake($updateMask, $lake);
+        $response = $gapicClient->updateLake($updateMask, $lake);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3016,7 +3020,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3040,7 +3044,7 @@ class DataplexServiceClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $lake = new Lake();
-        $response = $client->updateLake($updateMask, $lake);
+        $response = $gapicClient->updateLake($updateMask, $lake);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3074,7 +3078,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3112,7 +3116,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $executionSpecServiceAccount = 'executionSpecServiceAccount-1249728629';
         $taskExecutionSpec->setServiceAccount($executionSpecServiceAccount);
         $task->setExecutionSpec($taskExecutionSpec);
-        $response = $client->updateTask($updateMask, $task);
+        $response = $gapicClient->updateTask($updateMask, $task);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3157,7 +3161,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3189,7 +3193,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $executionSpecServiceAccount = 'executionSpecServiceAccount-1249728629';
         $taskExecutionSpec->setServiceAccount($executionSpecServiceAccount);
         $task->setExecutionSpec($taskExecutionSpec);
-        $response = $client->updateTask($updateMask, $task);
+        $response = $gapicClient->updateTask($updateMask, $task);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3223,7 +3227,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3259,7 +3263,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $resourceSpecLocationType = LocationType::LOCATION_TYPE_UNSPECIFIED;
         $zoneResourceSpec->setLocationType($resourceSpecLocationType);
         $zone->setResourceSpec($zoneResourceSpec);
-        $response = $client->updateZone($updateMask, $zone);
+        $response = $gapicClient->updateZone($updateMask, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3304,7 +3308,7 @@ class DataplexServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3334,7 +3338,7 @@ class DataplexServiceClientTest extends GeneratedTest
         $resourceSpecLocationType = LocationType::LOCATION_TYPE_UNSPECIFIED;
         $zoneResourceSpec->setLocationType($resourceSpecLocationType);
         $zone->setResourceSpec($zoneResourceSpec);
-        $response = $client->updateZone($updateMask, $zone);
+        $response = $gapicClient->updateZone($updateMask, $zone);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3354,5 +3358,335 @@ class DataplexServiceClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $version = 351608024;
+        $etag = '21';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $response = $gapicClient->getIamPolicy($resource);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        try {
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function setIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $version = 351608024;
+        $etag = '21';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function setIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        try {
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function testIamPermissionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new TestIamPermissionsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function testIamPermissionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        try {
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getLocationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $locationId = 'locationId552319461';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new Location();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->getLocation();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/GetLocation', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getLocationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->getLocation();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listLocationsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $locationsElement = new Location();
+        $locations = [
+            $locationsElement,
+        ];
+        $expectedResponse = new ListLocationsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setLocations($locations);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->listLocations();
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getLocations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/ListLocations', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function listLocationsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->listLocations();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

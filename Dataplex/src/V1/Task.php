@@ -78,6 +78,12 @@ class Task extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.ExecutionSpec execution_spec = 101 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $execution_spec = null;
+    /**
+     * Output only. Status of the latest task executions.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.ExecutionStatus execution_status = 201 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $execution_status = null;
     protected $config;
 
     /**
@@ -109,6 +115,8 @@ class Task extends \Google\Protobuf\Internal\Message
      *           Required. Spec related to how often and when a task should be triggered.
      *     @type \Google\Cloud\Dataplex\V1\Task\ExecutionSpec $execution_spec
      *           Required. Spec related to how a task is executed.
+     *     @type \Google\Cloud\Dataplex\V1\Task\ExecutionStatus $execution_status
+     *           Output only. Status of the latest task executions.
      *     @type \Google\Cloud\Dataplex\V1\Task\SparkTaskConfig $spark
      *           Config related to running custom Spark tasks.
      * }
@@ -420,6 +428,42 @@ class Task extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\Task\ExecutionSpec::class);
         $this->execution_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Status of the latest task executions.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.ExecutionStatus execution_status = 201 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\Task\ExecutionStatus|null
+     */
+    public function getExecutionStatus()
+    {
+        return $this->execution_status;
+    }
+
+    public function hasExecutionStatus()
+    {
+        return isset($this->execution_status);
+    }
+
+    public function clearExecutionStatus()
+    {
+        unset($this->execution_status);
+    }
+
+    /**
+     * Output only. Status of the latest task executions.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.ExecutionStatus execution_status = 201 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\Task\ExecutionStatus $var
+     * @return $this
+     */
+    public function setExecutionStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\Task\ExecutionStatus::class);
+        $this->execution_status = $var;
 
         return $this;
     }

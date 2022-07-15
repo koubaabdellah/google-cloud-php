@@ -25,12 +25,13 @@
 namespace Google\Cloud\Dataplex\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
-use Google\ApiCore\OperationResponse;
 
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -83,6 +84,16 @@ use Google\Cloud\Dataplex\V1\UpdateLakeRequest;
 use Google\Cloud\Dataplex\V1\UpdateTaskRequest;
 use Google\Cloud\Dataplex\V1\UpdateZoneRequest;
 use Google\Cloud\Dataplex\V1\Zone;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
@@ -90,9 +101,9 @@ use Google\Protobuf\GPBEmpty;
 /**
  * Service Description: Dataplex service provides data lakes as a service. The primary resources
  * offered by this service are Lakes, Zones and Assets which collectively allow
- * a data adminstrator to organize, manage, secure and catalog data across their
- * organization located across cloud projects in a variety of storage systems
- * including Cloud Storage and BigQuery.
+ * a data administrator to organize, manage, secure and catalog data across
+ * their organization located across cloud projects in a variety of storage
+ * systems including Cloud Storage and BigQuery.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -670,7 +681,7 @@ class DataplexServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the parent zone:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
      * @param string $assetId      Required. Asset identifier.
      *                             This ID will be used to generate names such as table names when publishing
      *                             metadata to Hive Metastore and BigQuery.
@@ -769,7 +780,7 @@ class DataplexServiceGapicClient
      * ```
      *
      * @param string      $parent        Required. The resource name of the parent lake:
-     *                                   projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+     *                                   `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
      * @param string      $environmentId Required. Environment identifier.
      *                                   * Must contain only lowercase letters, numbers and hyphens.
      *                                   * Must start with a letter.
@@ -1229,7 +1240,7 @@ class DataplexServiceGapicClient
      * ```
      *
      * @param string $name         Required. The resource name of the environment:
-     *                             projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}`
+     *                             `projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1303,7 +1314,7 @@ class DataplexServiceGapicClient
      * ```
      *
      * @param string $name         Required. The resource name of the lake:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1550,7 +1561,7 @@ class DataplexServiceGapicClient
      * ```
      *
      * @param string $name         Required. The resource name of the environment:
-     *                             projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}
+     *                             `projects/{project_id}/locations/{location_id}/lakes/{lake_id}/environments/{environment_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1700,7 +1711,7 @@ class DataplexServiceGapicClient
      * ```
      *
      * @param string $name         Required. The resource name of the task:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{tasks_id}`
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/tasks/{tasks_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1982,7 +1993,7 @@ class DataplexServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the parent lake:
-     *                             projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+     *                             `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2152,7 +2163,7 @@ class DataplexServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the parent lake:
-     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2323,7 +2334,7 @@ class DataplexServiceGapicClient
      * ```
      *
      * @param string $parent       Required. The resource name of the parent environment:
-     *                             projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}
+     *                             `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2336,6 +2347,16 @@ class DataplexServiceGapicClient
      *           If no page token is specified (the default), the first page
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. Filter request. The following `mode` filter is supported to return only the
+     *           sessions belonging to the requester when the mode is USER and return
+     *           sessions of all the users when the mode is ADMIN. When no filter is sent
+     *           default to USER mode.
+     *           NOTE: When the mode is ADMIN, the requester should have
+     *           `dataplex.environments.listAllSessions` permission to list all sessions,
+     *           in absence of the permission, the request fails.
+     *
+     *           mode = ADMIN | USER
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -2359,6 +2380,10 @@ class DataplexServiceGapicClient
 
         if (isset($optionalArgs['pageToken'])) {
             $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -3062,5 +3087,346 @@ class DataplexServiceGapicClient
             $request,
             $this->getOperationsClient()
         )->wait();
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $dataplexServiceClient = new DataplexServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $dataplexServiceClient->getIamPolicy($resource);
+     * } finally {
+     *     $dataplexServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $dataplexServiceClient = new DataplexServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $dataplexServiceClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $dataplexServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $dataplexServiceClient = new DataplexServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $dataplexServiceClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $dataplexServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $dataplexServiceClient = new DataplexServiceClient();
+     * try {
+     *     $response = $dataplexServiceClient->getLocation();
+     * } finally {
+     *     $dataplexServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $dataplexServiceClient = new DataplexServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $dataplexServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $dataplexServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $dataplexServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a
+     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
+     *           settings parameters. See the documentation on
+     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
     }
 }
