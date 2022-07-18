@@ -12,5 +12,5 @@ if (false) {
     class RestrictAllowedServicesRequest_RestrictionType {}
 }
 class_exists(RestrictAllowedServicesRequest\RestrictionType::class);
-@trigger_error('Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesRequest_RestrictionType is deprecated and will be removed in the next major release. Use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesRequest\RestrictionType instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesRequest_RestrictionType is deprecated and will be removed in a future release. Use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesRequest\RestrictionType instead', E_USER_DEPRECATED);
 

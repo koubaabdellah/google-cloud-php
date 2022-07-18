@@ -26,24 +26,14 @@ return [
                     ],
                 ],
             ],
-            'GetWorkload' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=organizations/*/locations/*/workloads/*}',
+            'RestrictAllowedResources' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{name=organizations/*/locations/*/workloads/*}:restrictAllowedResources',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
                             'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListWorkloads' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=organizations/*/locations/*}/workloads',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
                         ],
                     ],
                 ],

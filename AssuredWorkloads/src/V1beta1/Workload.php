@@ -83,8 +83,8 @@ class Workload extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Input only. The parent resource for the resources managed by this Assured
-     * Workload. May be either empty or a folder resource which is a child of the
+     * Input only. The parent resource for the resources managed by this Assured Workload. May
+     * be either empty or a folder resource which is a child of the
      * Workload parent. If not specified all resources are created under the
      * parent organization.
      * Format:
@@ -94,17 +94,20 @@ class Workload extends \Google\Protobuf\Internal\Message
      */
     private $provisioned_resources_parent = '';
     /**
-     * Input only. Settings used to create a CMEK crypto key. When set a project
-     * with a KMS CMEK key is provisioned. This field is mandatory for a subset of
-     * Compliance Regimes.
+     * Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS
+     * CMEK key is provisioned.
+     * This field is deprecated as of Feb 28, 2022.
+     * In order to create a Keyring, callers should specify,
+     * ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 14 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 14 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY];</code>
+     * @deprecated
      */
-    private $kms_settings = null;
+    protected $kms_settings = null;
     /**
-     * Input only. Resource properties that are used to customize workload
-     * resources. These properties (such as custom project id) will be used to
-     * create workload resources if possible. This field is optional.
+     * Input only. Resource properties that are used to customize workload resources.
+     * These properties (such as custom project id) will be used to create
+     * workload resources if possible. This field is optional.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload.ResourceSettings resource_settings = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
@@ -168,37 +171,35 @@ class Workload extends \Google\Protobuf\Internal\Message
      *           `billingAccounts/{billing_account_id}`. For example,
      *           `billingAccounts/012345-567890-ABCDEF`.
      *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload\IL4Settings $il4_settings
-     *           Required. Input only. Immutable. Settings specific to resources needed
-     *           for IL4.
+     *           Input only. Immutable. Settings specific to resources needed for IL4.
      *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload\CJISSettings $cjis_settings
-     *           Required. Input only. Immutable. Settings specific to resources needed
-     *           for CJIS.
+     *           Input only. Immutable. Settings specific to resources needed for CJIS.
      *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampHighSettings $fedramp_high_settings
-     *           Required. Input only. Immutable. Settings specific to resources needed
-     *           for FedRAMP High.
+     *           Input only. Immutable. Settings specific to resources needed for FedRAMP High.
      *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampModerateSettings $fedramp_moderate_settings
-     *           Required. Input only. Immutable. Settings specific to resources needed
-     *           for FedRAMP Moderate.
+     *           Input only. Immutable. Settings specific to resources needed for FedRAMP Moderate.
      *     @type string $etag
      *           Optional. ETag of the workload, it is calculated on the basis
      *           of the Workload contents. It will be used in Update & Delete operations.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels applied to the workload.
      *     @type string $provisioned_resources_parent
-     *           Input only. The parent resource for the resources managed by this Assured
-     *           Workload. May be either empty or a folder resource which is a child of the
+     *           Input only. The parent resource for the resources managed by this Assured Workload. May
+     *           be either empty or a folder resource which is a child of the
      *           Workload parent. If not specified all resources are created under the
      *           parent organization.
      *           Format:
      *           folders/{folder_id}
      *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload\KMSSettings $kms_settings
-     *           Input only. Settings used to create a CMEK crypto key. When set a project
-     *           with a KMS CMEK key is provisioned. This field is mandatory for a subset of
-     *           Compliance Regimes.
+     *           Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS
+     *           CMEK key is provisioned.
+     *           This field is deprecated as of Feb 28, 2022.
+     *           In order to create a Keyring, callers should specify,
+     *           ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
      *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings[]|\Google\Protobuf\Internal\RepeatedField $resource_settings
-     *           Input only. Resource properties that are used to customize workload
-     *           resources. These properties (such as custom project id) will be used to
-     *           create workload resources if possible. This field is optional.
+     *           Input only. Resource properties that are used to customize workload resources.
+     *           These properties (such as custom project id) will be used to create
+     *           workload resources if possible. This field is optional.
      *     @type int $kaj_enrollment_state
      *           Output only. Represents the KAJ enrollment state of the given workload.
      *     @type bool $enable_sovereign_controls
@@ -416,10 +417,9 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Immutable. Settings specific to resources needed
-     * for IL4.
+     * Input only. Immutable. Settings specific to resources needed for IL4.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.IL4Settings il4_settings = 7 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.IL4Settings il4_settings = 7 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\IL4Settings|null
      * @deprecated
      */
@@ -436,10 +436,9 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Immutable. Settings specific to resources needed
-     * for IL4.
+     * Input only. Immutable. Settings specific to resources needed for IL4.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.IL4Settings il4_settings = 7 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.IL4Settings il4_settings = 7 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\IL4Settings $var
      * @return $this
      * @deprecated
@@ -454,10 +453,9 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Immutable. Settings specific to resources needed
-     * for CJIS.
+     * Input only. Immutable. Settings specific to resources needed for CJIS.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.CJISSettings cjis_settings = 8 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.CJISSettings cjis_settings = 8 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\CJISSettings|null
      * @deprecated
      */
@@ -474,10 +472,9 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Immutable. Settings specific to resources needed
-     * for CJIS.
+     * Input only. Immutable. Settings specific to resources needed for CJIS.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.CJISSettings cjis_settings = 8 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.CJISSettings cjis_settings = 8 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\CJISSettings $var
      * @return $this
      * @deprecated
@@ -492,10 +489,9 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Immutable. Settings specific to resources needed
-     * for FedRAMP High.
+     * Input only. Immutable. Settings specific to resources needed for FedRAMP High.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.FedrampHighSettings fedramp_high_settings = 11 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.FedrampHighSettings fedramp_high_settings = 11 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampHighSettings|null
      * @deprecated
      */
@@ -512,10 +508,9 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Immutable. Settings specific to resources needed
-     * for FedRAMP High.
+     * Input only. Immutable. Settings specific to resources needed for FedRAMP High.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.FedrampHighSettings fedramp_high_settings = 11 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.FedrampHighSettings fedramp_high_settings = 11 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampHighSettings $var
      * @return $this
      * @deprecated
@@ -530,10 +525,9 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Immutable. Settings specific to resources needed
-     * for FedRAMP Moderate.
+     * Input only. Immutable. Settings specific to resources needed for FedRAMP Moderate.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.FedrampModerateSettings fedramp_moderate_settings = 12 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.FedrampModerateSettings fedramp_moderate_settings = 12 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampModerateSettings|null
      * @deprecated
      */
@@ -550,10 +544,9 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Input only. Immutable. Settings specific to resources needed
-     * for FedRAMP Moderate.
+     * Input only. Immutable. Settings specific to resources needed for FedRAMP Moderate.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.FedrampModerateSettings fedramp_moderate_settings = 12 [deprecated = true, (.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.FedrampModerateSettings fedramp_moderate_settings = 12 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY, (.google.api.field_behavior) = IMMUTABLE];</code>
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\FedrampModerateSettings $var
      * @return $this
      * @deprecated
@@ -622,8 +615,8 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The parent resource for the resources managed by this Assured
-     * Workload. May be either empty or a folder resource which is a child of the
+     * Input only. The parent resource for the resources managed by this Assured Workload. May
+     * be either empty or a folder resource which is a child of the
      * Workload parent. If not specified all resources are created under the
      * parent organization.
      * Format:
@@ -638,8 +631,8 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The parent resource for the resources managed by this Assured
-     * Workload. May be either empty or a folder resource which is a child of the
+     * Input only. The parent resource for the resources managed by this Assured Workload. May
+     * be either empty or a folder resource which is a child of the
      * Workload parent. If not specified all resources are created under the
      * parent organization.
      * Format:
@@ -658,39 +651,49 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Settings used to create a CMEK crypto key. When set a project
-     * with a KMS CMEK key is provisioned. This field is mandatory for a subset of
-     * Compliance Regimes.
+     * Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS
+     * CMEK key is provisioned.
+     * This field is deprecated as of Feb 28, 2022.
+     * In order to create a Keyring, callers should specify,
+     * ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 14 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 14 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return \Google\Cloud\AssuredWorkloads\V1beta1\Workload\KMSSettings|null
+     * @deprecated
      */
     public function getKmsSettings()
     {
+        @trigger_error('kms_settings is deprecated.', E_USER_DEPRECATED);
         return $this->kms_settings;
     }
 
     public function hasKmsSettings()
     {
+        @trigger_error('kms_settings is deprecated.', E_USER_DEPRECATED);
         return isset($this->kms_settings);
     }
 
     public function clearKmsSettings()
     {
+        @trigger_error('kms_settings is deprecated.', E_USER_DEPRECATED);
         unset($this->kms_settings);
     }
 
     /**
-     * Input only. Settings used to create a CMEK crypto key. When set a project
-     * with a KMS CMEK key is provisioned. This field is mandatory for a subset of
-     * Compliance Regimes.
+     * Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS
+     * CMEK key is provisioned.
+     * This field is deprecated as of Feb 28, 2022.
+     * In order to create a Keyring, callers should specify,
+     * ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
      *
-     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 14 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.KMSSettings kms_settings = 14 [deprecated = true, (.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\KMSSettings $var
      * @return $this
+     * @deprecated
      */
     public function setKmsSettings($var)
     {
+        @trigger_error('kms_settings is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\AssuredWorkloads\V1beta1\Workload\KMSSettings::class);
         $this->kms_settings = $var;
 
@@ -698,9 +701,9 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Resource properties that are used to customize workload
-     * resources. These properties (such as custom project id) will be used to
-     * create workload resources if possible. This field is optional.
+     * Input only. Resource properties that are used to customize workload resources.
+     * These properties (such as custom project id) will be used to create
+     * workload resources if possible. This field is optional.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload.ResourceSettings resource_settings = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -711,9 +714,9 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Resource properties that are used to customize workload
-     * resources. These properties (such as custom project id) will be used to
-     * create workload resources if possible. This field is optional.
+     * Input only. Resource properties that are used to customize workload resources.
+     * These properties (such as custom project id) will be used to create
+     * workload resources if possible. This field is optional.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload.ResourceSettings resource_settings = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings[]|\Google\Protobuf\Internal\RepeatedField $var

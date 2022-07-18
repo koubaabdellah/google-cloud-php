@@ -24,7 +24,7 @@ class AnalyzeWorkloadMoveRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string target = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $target = '';
+    private $target = '';
     protected $projectOrWorkloadResource;
 
     /**
