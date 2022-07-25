@@ -30,7 +30,7 @@ class TableSchema extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BigQuery\Storage\V1\TableFieldSchema[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type array<\Google\Cloud\BigQuery\Storage\V1\TableFieldSchema>|\Google\Protobuf\Internal\RepeatedField $fields
      *           Describes the fields in a table.
      * }
      */
@@ -54,7 +54,7 @@ class TableSchema extends \Google\Protobuf\Internal\Message
      * Describes the fields in a table.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.TableFieldSchema fields = 1;</code>
-     * @param \Google\Cloud\BigQuery\Storage\V1\TableFieldSchema[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\Storage\V1\TableFieldSchema>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)

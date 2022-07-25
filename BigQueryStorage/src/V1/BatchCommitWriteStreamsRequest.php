@@ -38,7 +38,7 @@ class BatchCommitWriteStreamsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. Parent table that all the streams should belong to, in the form of
      *           `projects/{project}/datasets/{dataset}/tables/{table}`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $write_streams
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $write_streams
      *           Required. The group of streams that will be committed atomically.
      * }
      */
@@ -90,7 +90,7 @@ class BatchCommitWriteStreamsRequest extends \Google\Protobuf\Internal\Message
      * Required. The group of streams that will be committed atomically.
      *
      * Generated from protobuf field <code>repeated string write_streams = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWriteStreams($var)

@@ -109,7 +109,7 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      *           Required. The field data type.
      *     @type int $mode
      *           Optional. The field mode. The default value is NULLABLE.
-     *     @type \Google\Cloud\BigQuery\Storage\V1\TableFieldSchema[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type array<\Google\Cloud\BigQuery\Storage\V1\TableFieldSchema>|\Google\Protobuf\Internal\RepeatedField $fields
      *           Optional. Describes the nested schema fields if the type property is set to STRUCT.
      *     @type string $description
      *           Optional. The field description. The maximum length is 1,024 characters.
@@ -252,7 +252,7 @@ class TableFieldSchema extends \Google\Protobuf\Internal\Message
      * Optional. Describes the nested schema fields if the type property is set to STRUCT.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.TableFieldSchema fields = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\BigQuery\Storage\V1\TableFieldSchema[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\Storage\V1\TableFieldSchema>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)

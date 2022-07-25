@@ -44,7 +44,7 @@ class BatchCommitWriteStreamsResponse extends \Google\Protobuf\Internal\Message
      *           The time at which streams were committed in microseconds granularity.
      *           This field will only exist when there are no stream errors.
      *           **Note** if this field is not set, it means the commit was not successful.
-     *     @type \Google\Cloud\BigQuery\Storage\V1\StorageError[]|\Google\Protobuf\Internal\RepeatedField $stream_errors
+     *     @type array<\Google\Cloud\BigQuery\Storage\V1\StorageError>|\Google\Protobuf\Internal\RepeatedField $stream_errors
      *           Stream level error if commit failed. Only streams with error will be in
      *           the list.
      *           If empty, there is no error and all streams are committed successfully.
@@ -120,7 +120,7 @@ class BatchCommitWriteStreamsResponse extends \Google\Protobuf\Internal\Message
      * to atomicity guarantee.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.StorageError stream_errors = 2;</code>
-     * @param \Google\Cloud\BigQuery\Storage\V1\StorageError[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\Storage\V1\StorageError>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStreamErrors($var)

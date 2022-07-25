@@ -45,7 +45,7 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $selected_fields
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $selected_fields
      *           Names of the fields in the table that should be read. If empty, all
      *           fields will be read. If the specified field is a nested field, all
      *           the sub-fields in the field will be selected. The output field order is
@@ -89,7 +89,7 @@ class TableReadOptions extends \Google\Protobuf\Internal\Message
      * unrelated to the order of fields in selected_fields.
      *
      * Generated from protobuf field <code>repeated string selected_fields = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSelectedFields($var)
