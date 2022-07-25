@@ -30,7 +30,7 @@ class AnalyzeWorkloadMoveResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $blockers
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blockers
      *           List of blockers that prevent moving the source workload to the target
      *           workload
      * }
@@ -57,7 +57,7 @@ class AnalyzeWorkloadMoveResponse extends \Google\Protobuf\Internal\Message
      * workload
      *
      * Generated from protobuf field <code>repeated string blockers = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBlockers($var)

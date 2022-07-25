@@ -152,7 +152,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      *           Allowed characters are: lowercase and uppercase letters, numbers,
      *           hyphen, and spaces.
      *           Example: My Workload
-     *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceInfo[]|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type array<\Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceInfo>|\Google\Protobuf\Internal\RepeatedField $resources
      *           Output only. The resources associated with this workload.
      *           These resources will be created when creating the workload.
      *           If any of the projects already exist, the workload creation will fail.
@@ -196,7 +196,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      *           This field is deprecated as of Feb 28, 2022.
      *           In order to create a Keyring, callers should specify,
      *           ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
-     *     @type \Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings[]|\Google\Protobuf\Internal\RepeatedField $resource_settings
+     *     @type array<\Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings>|\Google\Protobuf\Internal\RepeatedField $resource_settings
      *           Input only. Resource properties that are used to customize workload resources.
      *           These properties (such as custom project id) will be used to create
      *           workload resources if possible. This field is optional.
@@ -303,7 +303,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Always read only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload.ResourceInfo resources = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResources($var)
@@ -719,7 +719,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      * workload resources if possible. This field is optional.
      *
      * Generated from protobuf field <code>repeated .google.cloud.assuredworkloads.v1beta1.Workload.ResourceSettings resource_settings = 15 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param \Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AssuredWorkloads\V1beta1\Workload\ResourceSettings>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceSettings($var)
