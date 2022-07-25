@@ -60,7 +60,7 @@ class Partition extends \Google\Protobuf\Internal\Message
      *           to encode "US:CA/CA#Sunnyvale so that the request URL ends
      *           with "/partitions/US%253ACA/CA%2523Sunnyvale".
      *           The name field in the response retains the encoded format.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
      *           Required. Immutable. The set of values representing the partition, which correspond to the
      *           partition schema defined in the parent entity.
      *     @type string $location
@@ -127,7 +127,7 @@ class Partition extends \Google\Protobuf\Internal\Message
      * partition schema defined in the parent entity.
      *
      * Generated from protobuf field <code>repeated string values = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

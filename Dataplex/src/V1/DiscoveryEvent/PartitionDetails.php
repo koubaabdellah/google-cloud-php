@@ -57,7 +57,7 @@ class PartitionDetails extends \Google\Protobuf\Internal\Message
      *           The name is the fully-qualified resource name.
      *     @type int $type
      *           The type of the containing entity resource.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $sampled_data_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $sampled_data_locations
      *           The locations of the data items (e.g., a Cloud Storage objects) sampled
      *           for metadata inference.
      * }
@@ -166,7 +166,7 @@ class PartitionDetails extends \Google\Protobuf\Internal\Message
      * for metadata inference.
      *
      * Generated from protobuf field <code>repeated string sampled_data_locations = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSampledDataLocations($var)

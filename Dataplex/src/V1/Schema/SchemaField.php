@@ -66,7 +66,7 @@ class SchemaField extends \Google\Protobuf\Internal\Message
      *           Required. The type of field.
      *     @type int $mode
      *           Required. Additional field semantics.
-     *     @type \Google\Cloud\Dataplex\V1\Schema\SchemaField[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type array<\Google\Cloud\Dataplex\V1\Schema\SchemaField>|\Google\Protobuf\Internal\RepeatedField $fields
      *           Optional. Any nested field for complex types.
      * }
      */
@@ -200,7 +200,7 @@ class SchemaField extends \Google\Protobuf\Internal\Message
      * Optional. Any nested field for complex types.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Schema.SchemaField fields = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataplex\V1\Schema\SchemaField[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataplex\V1\Schema\SchemaField>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)

@@ -70,10 +70,10 @@ class Schema extends \Google\Protobuf\Internal\Message
      *           - Set to `true` to fully manage the entity
      *             schema. This setting guarantees that Dataplex will not
      *             change schema fields.
-     *     @type \Google\Cloud\Dataplex\V1\Schema\SchemaField[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type array<\Google\Cloud\Dataplex\V1\Schema\SchemaField>|\Google\Protobuf\Internal\RepeatedField $fields
      *           Optional. The sequence of fields describing data in table entities.
      *           **Note:** BigQuery SchemaFields are immutable.
-     *     @type \Google\Cloud\Dataplex\V1\Schema\PartitionField[]|\Google\Protobuf\Internal\RepeatedField $partition_fields
+     *     @type array<\Google\Cloud\Dataplex\V1\Schema\PartitionField>|\Google\Protobuf\Internal\RepeatedField $partition_fields
      *           Optional. The sequence of fields describing the partition structure in entities.
      *           If this field is empty, there are no partitions within the data.
      *     @type int $partition_style
@@ -148,7 +148,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * **Note:** BigQuery SchemaFields are immutable.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Schema.SchemaField fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataplex\V1\Schema\SchemaField[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataplex\V1\Schema\SchemaField>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)
@@ -176,7 +176,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * If this field is empty, there are no partitions within the data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Schema.PartitionField partition_fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataplex\V1\Schema\PartitionField[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataplex\V1\Schema\PartitionField>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPartitionFields($var)
