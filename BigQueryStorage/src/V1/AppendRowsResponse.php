@@ -31,6 +31,13 @@ class AppendRowsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.storage.v1.RowError row_errors = 4;</code>
      */
     private $row_errors;
+    /**
+     * The target of the append operation. Matches the write_stream in the
+     * corresponding request.
+     *
+     * Generated from protobuf field <code>string write_stream = 5;</code>
+     */
+    private $write_stream = '';
     protected $response;
 
     /**
@@ -64,6 +71,9 @@ class AppendRowsResponse extends \Google\Protobuf\Internal\Message
      *           If a request failed due to corrupted rows, no rows in the batch will be
      *           appended. The API will return row level error info, so that the caller can
      *           remove the bad rows and retry the request.
+     *     @type string $write_stream
+     *           The target of the append operation. Matches the write_stream in the
+     *           corresponding request.
      * }
      */
     public function __construct($data = NULL) {
@@ -225,6 +235,34 @@ class AppendRowsResponse extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\BigQuery\Storage\V1\RowError::class);
         $this->row_errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The target of the append operation. Matches the write_stream in the
+     * corresponding request.
+     *
+     * Generated from protobuf field <code>string write_stream = 5;</code>
+     * @return string
+     */
+    public function getWriteStream()
+    {
+        return $this->write_stream;
+    }
+
+    /**
+     * The target of the append operation. Matches the write_stream in the
+     * corresponding request.
+     *
+     * Generated from protobuf field <code>string write_stream = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setWriteStream($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->write_stream = $var;
 
         return $this;
     }

@@ -85,22 +85,28 @@ class BigQueryWriteClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $writeStream = 'writeStream-1431753760';
         $expectedResponse = new AppendRowsResponse();
+        $expectedResponse->setWriteStream($writeStream);
         $transport->addResponse($expectedResponse);
+        $writeStream2 = 'writeStream2-1525825645';
         $expectedResponse2 = new AppendRowsResponse();
+        $expectedResponse2->setWriteStream($writeStream2);
         $transport->addResponse($expectedResponse2);
+        $writeStream3 = 'writeStream3-1525825644';
         $expectedResponse3 = new AppendRowsResponse();
+        $expectedResponse3->setWriteStream($writeStream3);
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $formattedWriteStream = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $formattedWriteStream4 = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
         $request = new AppendRowsRequest();
-        $request->setWriteStream($formattedWriteStream);
-        $formattedWriteStream2 = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $request->setWriteStream($formattedWriteStream4);
+        $formattedWriteStream5 = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
         $request2 = new AppendRowsRequest();
-        $request2->setWriteStream($formattedWriteStream2);
-        $formattedWriteStream3 = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
+        $request2->setWriteStream($formattedWriteStream5);
+        $formattedWriteStream6 = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');
         $request3 = new AppendRowsRequest();
-        $request3->setWriteStream($formattedWriteStream3);
+        $request3->setWriteStream($formattedWriteStream6);
         $bidi = $gapicClient->appendRows();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);

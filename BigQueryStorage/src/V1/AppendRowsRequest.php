@@ -13,6 +13,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * Due to the nature of AppendRows being a bidirectional streaming RPC, certain
  * parts of the AppendRowsRequest need only be specified for the first request
  * sent each time the gRPC network connection is opened/reopened.
+ * The size of a single AppendRowsRequest must be less than 10 MB in size.
+ * Requests larger than this return an error, typically `INVALID_ARGUMENT`.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.storage.v1.AppendRowsRequest</code>
  */
