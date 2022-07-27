@@ -611,10 +611,9 @@ class DataplexServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -698,10 +697,9 @@ class DataplexServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -795,10 +793,9 @@ class DataplexServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -895,10 +892,9 @@ class DataplexServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -987,10 +983,9 @@ class DataplexServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1087,10 +1082,9 @@ class DataplexServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1171,10 +1165,9 @@ class DataplexServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1245,10 +1238,9 @@ class DataplexServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1319,10 +1311,9 @@ class DataplexServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1392,10 +1383,9 @@ class DataplexServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1466,10 +1456,9 @@ class DataplexServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1516,10 +1505,9 @@ class DataplexServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Asset
@@ -1566,10 +1554,9 @@ class DataplexServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Environment
@@ -1616,10 +1603,9 @@ class DataplexServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Job
@@ -1666,10 +1652,9 @@ class DataplexServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Lake
@@ -1716,10 +1701,9 @@ class DataplexServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Task
@@ -1766,10 +1750,9 @@ class DataplexServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Zone
@@ -1837,10 +1820,9 @@ class DataplexServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1920,10 +1902,9 @@ class DataplexServiceGapicClient
      *     @type string $orderBy
      *           Optional. Order by fields for the result.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2011,10 +1992,9 @@ class DataplexServiceGapicClient
      *     @type string $orderBy
      *           Optional. Order by fields for the result.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2098,10 +2078,9 @@ class DataplexServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2177,10 +2156,9 @@ class DataplexServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2261,10 +2239,9 @@ class DataplexServiceGapicClient
      *     @type string $orderBy
      *           Optional. Order by fields for the result.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2358,10 +2335,9 @@ class DataplexServiceGapicClient
      *
      *           mode = ADMIN | USER
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2445,10 +2421,9 @@ class DataplexServiceGapicClient
      *     @type string $orderBy
      *           Optional. Order by fields for the result.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2532,10 +2507,9 @@ class DataplexServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2615,10 +2589,9 @@ class DataplexServiceGapicClient
      *     @type string $orderBy
      *           Optional. Order by fields for the result.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2711,10 +2684,9 @@ class DataplexServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -2796,10 +2768,9 @@ class DataplexServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -2884,10 +2855,9 @@ class DataplexServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -2969,10 +2939,9 @@ class DataplexServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -3054,10 +3023,9 @@ class DataplexServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -3113,10 +3081,9 @@ class DataplexServiceGapicClient
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -3184,10 +3151,9 @@ class DataplexServiceGapicClient
      *
      *           `paths: "bindings, etag"`
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -3252,10 +3218,9 @@ class DataplexServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
@@ -3307,10 +3272,9 @@ class DataplexServiceGapicClient
      *     @type string $name
      *           Resource name for the location.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Location\Location
@@ -3384,10 +3348,9 @@ class DataplexServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse

@@ -348,10 +348,9 @@ class ContentServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Content
@@ -403,10 +402,9 @@ class ContentServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -454,10 +452,9 @@ class ContentServiceGapicClient
      *           Optional. Specify content view to make a partial request.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Dataplex\V1\GetContentRequest\ContentView}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Content
@@ -516,10 +513,9 @@ class ContentServiceGapicClient
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -601,10 +597,9 @@ class ContentServiceGapicClient
      *
      *           These restrictions can be coinjoined with AND, OR and NOT conjunctions.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -678,10 +673,9 @@ class ContentServiceGapicClient
      *
      *           `paths: "bindings, etag"`
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -747,10 +741,9 @@ class ContentServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
@@ -806,10 +799,9 @@ class ContentServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Content
@@ -868,10 +860,9 @@ class ContentServiceGapicClient
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -939,10 +930,9 @@ class ContentServiceGapicClient
      *
      *           `paths: "bindings, etag"`
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -1007,10 +997,9 @@ class ContentServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
@@ -1062,10 +1051,9 @@ class ContentServiceGapicClient
      *     @type string $name
      *           Resource name for the location.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Location\Location
@@ -1139,10 +1127,9 @@ class ContentServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse

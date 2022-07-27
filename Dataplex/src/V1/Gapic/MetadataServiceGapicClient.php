@@ -411,10 +411,9 @@ class MetadataServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Entity
@@ -471,10 +470,9 @@ class MetadataServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Partition
@@ -532,10 +530,9 @@ class MetadataServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -586,10 +583,9 @@ class MetadataServiceGapicClient
      *     @type string $etag
      *           Optional. The etag associated with the partition.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -642,10 +638,9 @@ class MetadataServiceGapicClient
      *           Defaults to `BASIC`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Dataplex\V1\GetEntityRequest\EntityView}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Entity
@@ -698,10 +693,9 @@ class MetadataServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Partition
@@ -781,10 +775,9 @@ class MetadataServiceGapicClient
      *           - Is HIVE compatible: ?filter="hive_compatible=true"
      *           - Is BigQuery compatible: ?filter="bigquery_compatible=true"
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -885,10 +878,9 @@ class MetadataServiceGapicClient
      *           - Up to 20 key value filter pairs are allowed, but due to performance
      *           considerations, only the first 10 will be used as a filter.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -949,10 +941,9 @@ class MetadataServiceGapicClient
      *           Optional. Only validate the request, but do not perform mutations.
      *           The default is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Dataplex\V1\Entity
@@ -1007,10 +998,9 @@ class MetadataServiceGapicClient
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -1078,10 +1068,9 @@ class MetadataServiceGapicClient
      *
      *           `paths: "bindings, etag"`
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -1146,10 +1135,9 @@ class MetadataServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
@@ -1201,10 +1189,9 @@ class MetadataServiceGapicClient
      *     @type string $name
      *           Resource name for the location.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Location\Location
@@ -1278,10 +1265,9 @@ class MetadataServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
