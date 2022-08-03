@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration to control the number of findings returned. Cannot be set if
- * de-identification is requested.
+ * Configuration to control the number of findings returned for inspection.
+ * This is not used for de-identification or data profiling.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.InspectConfig.FindingLimits</code>
  */
@@ -55,7 +55,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
      *           Max number of findings that will be returned per request/job.
      *           When set within `InspectContentRequest`, the maximum returned is 2000
      *           regardless if this is set higher.
-     *     @type \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit[]|\Google\Protobuf\Internal\RepeatedField $max_findings_per_info_type
+     *     @type array<\Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit>|\Google\Protobuf\Internal\RepeatedField $max_findings_per_info_type
      *           Configuration of findings limit given for specified infoTypes.
      * }
      */
@@ -141,7 +141,7 @@ class FindingLimits extends \Google\Protobuf\Internal\Message
      * Configuration of findings limit given for specified infoTypes.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectConfig.FindingLimits.InfoTypeLimit max_findings_per_info_type = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\InspectConfig\FindingLimits\InfoTypeLimit>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMaxFindingsPerInfoType($var)

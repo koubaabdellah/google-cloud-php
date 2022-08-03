@@ -60,7 +60,6 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      */
     private $include_regex;
     /**
-     * [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found
      * A list of regular expressions matching file paths to exclude. All files in
      * the bucket that match at least one of these regular expressions will be
      * excluded from the scan.
@@ -80,7 +79,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      *
      *     @type string $bucket_name
      *           The name of a Cloud Storage bucket. Required.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_regex
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_regex
      *           A list of regular expressions matching file paths to include. All files in
      *           the bucket that match at least one of these regular expressions will be
      *           included in the set of files, except for those that also match an item in
@@ -89,8 +88,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      *           Regular expressions use RE2
      *           [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found
      *           under the google/re2 repository on GitHub.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $exclude_regex
-     *           [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_regex
      *           A list of regular expressions matching file paths to exclude. All files in
      *           the bucket that match at least one of these regular expressions will be
      *           excluded from the scan.
@@ -159,7 +157,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      * under the google/re2 repository on GitHub.
      *
      * Generated from protobuf field <code>repeated string include_regex = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIncludeRegex($var)
@@ -171,7 +169,6 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found
      * A list of regular expressions matching file paths to exclude. All files in
      * the bucket that match at least one of these regular expressions will be
      * excluded from the scan.
@@ -188,7 +185,6 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found
      * A list of regular expressions matching file paths to exclude. All files in
      * the bucket that match at least one of these regular expressions will be
      * excluded from the scan.
@@ -197,7 +193,7 @@ class CloudStorageRegexFileSet extends \Google\Protobuf\Internal\Message
      * under the google/re2 repository on GitHub.
      *
      * Generated from protobuf field <code>repeated string exclude_regex = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExcludeRegex($var)

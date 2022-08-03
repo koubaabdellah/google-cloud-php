@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Defines a job to be run by the Cloud Dataflow service.
- * nextID: 26
  *
  * Generated from protobuf message <code>google.dataflow.v1beta3.Job</code>
  */
@@ -37,7 +36,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * name as an already-existing Job, the attempt returns the
      * existing Job.
      * The name must match the regular expression
-     * `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`
+     * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
@@ -250,7 +249,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           name as an already-existing Job, the attempt returns the
      *           existing Job.
      *           The name must match the regular expression
-     *           `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`
+     *           `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *     @type int $type
      *           The type of Cloud Dataflow job.
      *     @type \Google\Cloud\Dataflow\V1beta3\Environment $environment
@@ -421,7 +420,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * name as an already-existing Job, the attempt returns the
      * existing Job.
      * The name must match the regular expression
-     * `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`
+     * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 3;</code>
      * @return string
@@ -438,7 +437,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * name as an already-existing Job, the attempt returns the
      * existing Job.
      * The name must match the regular expression
-     * `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`
+     * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 3;</code>
      * @param string $var

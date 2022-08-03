@@ -54,13 +54,15 @@ use Google\Cloud\Bigtable\Admin\V2\DeleteInstanceRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetAppProfileRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetClusterRequest;
 use Google\Cloud\Bigtable\Admin\V2\GetInstanceRequest;
-
 use Google\Cloud\Bigtable\Admin\V2\Instance;
+
 use Google\Cloud\Bigtable\Admin\V2\Instance\Type;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListAppProfilesResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListClustersRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListClustersResponse;
+use Google\Cloud\Bigtable\Admin\V2\ListHotTabletsRequest;
+use Google\Cloud\Bigtable\Admin\V2\ListHotTabletsResponse;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesRequest;
 use Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse;
 use Google\Cloud\Bigtable\Admin\V2\PartialUpdateClusterRequest;
@@ -73,8 +75,8 @@ use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\LongRunning\Operation;
-
 use Google\Protobuf\FieldMask;
+
 use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\Timestamp;
 
@@ -488,10 +490,9 @@ class BigtableInstanceAdminGapicClient
      *     @type bool $ignoreWarnings
      *           If true, ignore safety checks when creating the app profile.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile
@@ -574,10 +575,9 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -661,10 +661,9 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -707,10 +706,9 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -747,10 +745,9 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -786,10 +783,9 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -825,10 +821,9 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\AppProfile
@@ -866,10 +861,9 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\Cluster
@@ -909,12 +903,11 @@ class BigtableInstanceAdminGapicClient
      *
      *     @type GetPolicyOptions $options
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
-     *           `GetIamPolicy`. This field is only used by Cloud IAM.
+     *           `GetIamPolicy`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -956,10 +949,9 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\Instance
@@ -1021,10 +1013,9 @@ class BigtableInstanceAdminGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1074,10 +1065,9 @@ class BigtableInstanceAdminGapicClient
      *     @type string $pageToken
      *           DEPRECATED: This field is unused and ignored.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\ListClustersResponse
@@ -1097,6 +1087,94 @@ class BigtableInstanceAdminGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('ListClusters', ListClustersResponse::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Lists hot tablets in a cluster, within the time range provided. Hot
+     * tablets are ordered based on CPU usage.
+     *
+     * Sample code:
+     * ```
+     * $bigtableInstanceAdminClient = new Google\Cloud\Bigtable\Admin\V2\BigtableInstanceAdminClient();
+     * try {
+     *     $formattedParent = $bigtableInstanceAdminClient->clusterName('[PROJECT]', '[INSTANCE]', '[CLUSTER]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $bigtableInstanceAdminClient->listHotTablets($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $bigtableInstanceAdminClient->listHotTablets($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $bigtableInstanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The cluster name to list hot tablets.
+     *                             Value is in the following form:
+     *                             `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type Timestamp $startTime
+     *           The start time to list hot tablets. The hot tablets in the response will
+     *           have start times between the requested start time and end time. Start time
+     *           defaults to Now if it is unset, and end time defaults to Now - 24 hours if
+     *           it is unset. The start time should be less than the end time, and the
+     *           maximum allowed time range between start time and end time is 48 hours.
+     *           Start time and end time should have values between Now and Now - 14 days.
+     *     @type Timestamp $endTime
+     *           The end time to list hot tablets.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listHotTablets($parent, array $optionalArgs = [])
+    {
+        $request = new ListHotTabletsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['startTime'])) {
+            $request->setStartTime($optionalArgs['startTime']);
+        }
+
+        if (isset($optionalArgs['endTime'])) {
+            $request->setEndTime($optionalArgs['endTime']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListHotTablets', $optionalArgs, ListHotTabletsResponse::class, $request);
     }
 
     /**
@@ -1121,10 +1199,9 @@ class BigtableInstanceAdminGapicClient
      *     @type string $pageToken
      *           DEPRECATED: This field is unused and ignored.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\ListInstancesResponse
@@ -1204,10 +1281,9 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1274,10 +1350,9 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1321,11 +1396,16 @@ class BigtableInstanceAdminGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -1339,6 +1419,10 @@ class BigtableInstanceAdminGapicClient
         $request->setResource($resource);
         $request->setPolicy($policy);
         $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
@@ -1369,10 +1453,9 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
@@ -1440,10 +1523,9 @@ class BigtableInstanceAdminGapicClient
      *     @type bool $ignoreWarnings
      *           If true, ignore safety checks when updating the app profile.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1518,28 +1600,25 @@ class BigtableInstanceAdminGapicClient
      *     Optional.
      *
      *     @type string $location
-     *           (`CreationOnly`)
-     *           The location where this cluster's nodes and storage reside. For best
+     *           Immutable. The location where this cluster's nodes and storage reside. For best
      *           performance, clients should be located as close as possible to this
      *           cluster. Currently only zones are supported, so values should be of the
      *           form `projects/{project}/locations/{zone}`.
      *     @type int $state
-     *           The current state of the cluster.
+     *           Output only. The current state of the cluster.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\Cluster\State}
      *     @type ClusterConfig $clusterConfig
      *           Configuration for this cluster.
      *     @type int $defaultStorageType
-     *           (`CreationOnly`)
-     *           The type of storage used by this cluster to serve its
+     *           Immutable. The type of storage used by this cluster to serve its
      *           parent instance's tables, unless explicitly overridden.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\Admin\V2\StorageType}
      *     @type EncryptionConfig $encryptionConfig
      *           Immutable. The encryption configuration for CMEK-protected clusters.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1626,11 +1705,12 @@ class BigtableInstanceAdminGapicClient
      *           Output only. A server-assigned timestamp representing when this Instance was created.
      *           For instances created before this field was added (August 2021), this value
      *           is `seconds: 0, nanos: 1`.
+     *     @type bool $satisfiesPzs
+     *           Output only. Reserved for future use.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Bigtable\Admin\V2\Instance
@@ -1652,6 +1732,10 @@ class BigtableInstanceAdminGapicClient
 
         if (isset($optionalArgs['createTime'])) {
             $request->setCreateTime($optionalArgs['createTime']);
+        }
+
+        if (isset($optionalArgs['satisfiesPzs'])) {
+            $request->setSatisfiesPzs($optionalArgs['satisfiesPzs']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

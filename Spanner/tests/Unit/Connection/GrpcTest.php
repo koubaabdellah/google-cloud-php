@@ -44,7 +44,7 @@ use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\PartitionedDml;
-use Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly;
+use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
@@ -57,7 +57,7 @@ use Google\Protobuf\Timestamp;
 use Google\Protobuf\Value;
 use GuzzleHttp\Promise\PromiseInterface;
 use http\Exception\InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -82,7 +82,7 @@ class GrpcTest extends TestCase
     private $successMessage;
     private $lro;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -866,6 +866,9 @@ class GrpcTest extends TestCase
     {
         $ts = (new \DateTime)->format('Y-m-d\TH:i:s.u\Z');
         $pbTs = new Timestamp($this->formatTimestampForApi($ts));
+        $readOnlyClass = PHP_VERSION_ID >= 80100
+            ? PBReadOnly::class
+            : 'Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly';
 
         return [
             [
@@ -881,7 +884,7 @@ class GrpcTest extends TestCase
                     ]
                 ],
                 new TransactionOptions([
-                    'read_only' => new ReadOnly([
+                    'read_only' => new $readOnlyClass([
                         'min_read_timestamp' => $pbTs,
                         'read_timestamp' => $pbTs
                     ])

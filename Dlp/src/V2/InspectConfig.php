@@ -41,19 +41,22 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     private $min_likelihood = 0;
     /**
      * Configuration to control the number of findings returned.
+     * This is not used for data profiling.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
      */
     private $limits = null;
     /**
      * When true, a contextual quote from the data that triggered a finding is
-     * included in the response; see Finding.quote.
+     * included in the response; see [Finding.quote][google.privacy.dlp.v2.Finding.quote].
+     * This is not used for data profiling.
      *
      * Generated from protobuf field <code>bool include_quote = 4;</code>
      */
     private $include_quote = false;
     /**
      * When true, excludes type information of the findings.
+     * This is not used for data profiling.
      *
      * Generated from protobuf field <code>bool exclude_info_types = 5;</code>
      */
@@ -66,8 +69,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      */
     private $custom_info_types;
     /**
-     * List of options defining data content to scan.
-     * If empty, text, images, and other content will be included.
+     * Deprecated and unused.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ContentOption content_options = 8;</code>
      */
@@ -87,7 +89,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\InfoType[]|\Google\Protobuf\Internal\RepeatedField $info_types
+     *     @type array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $info_types
      *           Restricts what info_types to look for. The values must correspond to
      *           InfoType values returned by ListInfoTypes or listed at
      *           https://cloud.google.com/dlp/docs/infotypes-reference.
@@ -103,18 +105,20 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *           See https://cloud.google.com/dlp/docs/likelihood to learn more.
      *     @type \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits $limits
      *           Configuration to control the number of findings returned.
+     *           This is not used for data profiling.
      *     @type bool $include_quote
      *           When true, a contextual quote from the data that triggered a finding is
-     *           included in the response; see Finding.quote.
+     *           included in the response; see [Finding.quote][google.privacy.dlp.v2.Finding.quote].
+     *           This is not used for data profiling.
      *     @type bool $exclude_info_types
      *           When true, excludes type information of the findings.
-     *     @type \Google\Cloud\Dlp\V2\CustomInfoType[]|\Google\Protobuf\Internal\RepeatedField $custom_info_types
+     *           This is not used for data profiling.
+     *     @type array<\Google\Cloud\Dlp\V2\CustomInfoType>|\Google\Protobuf\Internal\RepeatedField $custom_info_types
      *           CustomInfoTypes provided by the user. See
      *           https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $content_options
-     *           List of options defining data content to scan.
-     *           If empty, text, images, and other content will be included.
-     *     @type \Google\Cloud\Dlp\V2\InspectionRuleSet[]|\Google\Protobuf\Internal\RepeatedField $rule_set
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $content_options
+     *           Deprecated and unused.
+     *     @type array<\Google\Cloud\Dlp\V2\InspectionRuleSet>|\Google\Protobuf\Internal\RepeatedField $rule_set
      *           Set of rules to apply to the findings for this InspectConfig.
      *           Exclusion rules, contained in the set are executed in the end, other
      *           rules are executed in the order they are specified for each info type.
@@ -156,7 +160,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * otherwise a default list will be used, which may change over time.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoType info_types = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\InfoType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\InfoType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInfoTypes($var)
@@ -199,6 +203,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration to control the number of findings returned.
+     * This is not used for data profiling.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
      * @return \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits|null
@@ -220,6 +225,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Configuration to control the number of findings returned.
+     * This is not used for data profiling.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
      * @param \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits $var
@@ -235,7 +241,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * When true, a contextual quote from the data that triggered a finding is
-     * included in the response; see Finding.quote.
+     * included in the response; see [Finding.quote][google.privacy.dlp.v2.Finding.quote].
+     * This is not used for data profiling.
      *
      * Generated from protobuf field <code>bool include_quote = 4;</code>
      * @return bool
@@ -247,7 +254,8 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * When true, a contextual quote from the data that triggered a finding is
-     * included in the response; see Finding.quote.
+     * included in the response; see [Finding.quote][google.privacy.dlp.v2.Finding.quote].
+     * This is not used for data profiling.
      *
      * Generated from protobuf field <code>bool include_quote = 4;</code>
      * @param bool $var
@@ -263,6 +271,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * When true, excludes type information of the findings.
+     * This is not used for data profiling.
      *
      * Generated from protobuf field <code>bool exclude_info_types = 5;</code>
      * @return bool
@@ -274,6 +283,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * When true, excludes type information of the findings.
+     * This is not used for data profiling.
      *
      * Generated from protobuf field <code>bool exclude_info_types = 5;</code>
      * @param bool $var
@@ -304,7 +314,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.CustomInfoType custom_info_types = 6;</code>
-     * @param \Google\Cloud\Dlp\V2\CustomInfoType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\CustomInfoType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCustomInfoTypes($var)
@@ -316,8 +326,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of options defining data content to scan.
-     * If empty, text, images, and other content will be included.
+     * Deprecated and unused.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ContentOption content_options = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -328,11 +337,10 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of options defining data content to scan.
-     * If empty, text, images, and other content will be included.
+     * Deprecated and unused.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.ContentOption content_options = 8;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContentOptions($var)
@@ -362,7 +370,7 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      * rules are executed in the order they are specified for each info type.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InspectionRuleSet rule_set = 10;</code>
-     * @param \Google\Cloud\Dlp\V2\InspectionRuleSet[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\InspectionRuleSet>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRuleSet($var)

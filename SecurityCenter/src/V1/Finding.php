@@ -90,11 +90,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $security_marks = null;
     /**
-     * The time at which the event took place, or when an update to the finding
-     * occurred. For example, if the finding represents an open firewall it would
-     * capture the time the detector believes the firewall became open. The
-     * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved. Must not
+     * The time the finding was first detected. If an existing finding is updated,
+     * then this is the time the update occurred.
+     * For example, if the finding represents an open firewall, this property
+     * captures the time the detector believes the firewall became open. The
+     * accuracy is determined by the detector. If the finding is later resolved,
+     * then this time reflects when the finding was resolved. This must not
      * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
@@ -125,8 +126,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $canonical_name = '';
     /**
-     * Indicates the mute state of a finding (either unspecified, muted, unmuted
-     * or undefined).
+     * Indicates the mute state of a finding (either muted, unmuted
+     * or undefined). Unlike other attributes of a finding, a finding provider
+     * shouldn't set the value of mute.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.Mute mute = 15;</code>
      */
@@ -169,13 +171,105 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $external_systems;
     /**
+     * MITRE ATT&CK tactics and techniques related to this finding.
+     * See: https://attack.mitre.org
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.MitreAttack mitre_attack = 25;</code>
+     */
+    private $mitre_attack = null;
+    /**
+     * Access details associated to the Finding, such as more information on the
+     * caller, which method was accessed, from where, etc.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Access access = 26;</code>
+     */
+    private $access = null;
+    /**
+     * Contains information about the IP connection associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Connection connections = 31;</code>
+     */
+    private $connections;
+    /**
      * First known as mute_annotation. Records additional information about the
      * mute operation e.g. mute config that muted the finding, user who muted the
-     * finding, etc.
+     * finding, etc. Unlike other attributes of a finding, a finding provider
+     * shouldn't set the value of mute.
      *
      * Generated from protobuf field <code>string mute_initiator = 28;</code>
      */
     private $mute_initiator = '';
+    /**
+     * Represents operating system processes associated with the Finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Process processes = 30;</code>
+     */
+    private $processes;
+    /**
+     * Output only. Map containing the point of contacts for the given finding. The key
+     * represents the type of contact, while the value contains a list of all the
+     * contacts that pertain. Please refer to:
+     * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
+     *     {
+     *       "security": {
+     *         "contacts": [
+     *           {
+     *             "email": "person1&#64;company.com"
+     *           },
+     *           {
+     *             "email": "person2&#64;company.com"
+     *           }
+     *         ]
+     *       }
+     *     }
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ContactDetails> contacts = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $contacts;
+    /**
+     * Contains compliance information for security standards associated to the
+     * finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Compliance compliances = 34;</code>
+     */
+    private $compliances;
+    /**
+     * Contains more detail about the finding.
+     *
+     * Generated from protobuf field <code>string description = 37;</code>
+     */
+    private $description = '';
+    /**
+     * Represents exfiltration associated with the Finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Exfiltration exfiltration = 38;</code>
+     */
+    private $exfiltration = null;
+    /**
+     * Represents IAM bindings associated with the Finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.IamBinding iam_bindings = 39;</code>
+     */
+    private $iam_bindings;
+    /**
+     * Next steps associate to the finding.
+     *
+     * Generated from protobuf field <code>string next_steps = 40;</code>
+     */
+    private $next_steps = '';
+    /**
+     * Containers associated with the finding. containers provides information
+     * for both Kubernetes and non-Kubernetes containers.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Container containers = 42;</code>
+     */
+    private $containers;
+    /**
+     * Kubernetes resources associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Kubernetes kubernetes = 43;</code>
+     */
+    private $kubernetes = null;
 
     /**
      * Constructor.
@@ -221,11 +315,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           managed by the user and come from the SecurityMarks resource that belongs
      *           to the finding.
      *     @type \Google\Protobuf\Timestamp $event_time
-     *           The time at which the event took place, or when an update to the finding
-     *           occurred. For example, if the finding represents an open firewall it would
-     *           capture the time the detector believes the firewall became open. The
-     *           accuracy is determined by the detector. If the finding were to be resolved
-     *           afterward, this time would reflect when the finding was resolved. Must not
+     *           The time the finding was first detected. If an existing finding is updated,
+     *           then this is the time the update occurred.
+     *           For example, if the finding represents an open firewall, this property
+     *           captures the time the detector believes the firewall became open. The
+     *           accuracy is determined by the detector. If the finding is later resolved,
+     *           then this time reflects when the finding was resolved. This must not
      *           be set to a value greater than the current timestamp.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time at which the finding was created in Security Command Center.
@@ -240,8 +335,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           depending on the closest CRM ancestor of the resource associated with the
      *           finding.
      *     @type int $mute
-     *           Indicates the mute state of a finding (either unspecified, muted, unmuted
-     *           or undefined).
+     *           Indicates the mute state of a finding (either muted, unmuted
+     *           or undefined). Unlike other attributes of a finding, a finding provider
+     *           shouldn't set the value of mute.
      *     @type int $finding_class
      *           The class of the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\Indicator $indicator
@@ -259,10 +355,54 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $external_systems
      *           Output only. Third party SIEM/SOAR fields within SCC, contains external system
      *           information and external system finding fields.
+     *     @type \Google\Cloud\SecurityCenter\V1\MitreAttack $mitre_attack
+     *           MITRE ATT&CK tactics and techniques related to this finding.
+     *           See: https://attack.mitre.org
+     *     @type \Google\Cloud\SecurityCenter\V1\Access $access
+     *           Access details associated to the Finding, such as more information on the
+     *           caller, which method was accessed, from where, etc.
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Connection>|\Google\Protobuf\Internal\RepeatedField $connections
+     *           Contains information about the IP connection associated with the finding.
      *     @type string $mute_initiator
      *           First known as mute_annotation. Records additional information about the
      *           mute operation e.g. mute config that muted the finding, user who muted the
-     *           finding, etc.
+     *           finding, etc. Unlike other attributes of a finding, a finding provider
+     *           shouldn't set the value of mute.
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Process>|\Google\Protobuf\Internal\RepeatedField $processes
+     *           Represents operating system processes associated with the Finding.
+     *     @type array|\Google\Protobuf\Internal\MapField $contacts
+     *           Output only. Map containing the point of contacts for the given finding. The key
+     *           represents the type of contact, while the value contains a list of all the
+     *           contacts that pertain. Please refer to:
+     *           https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
+     *               {
+     *                 "security": {
+     *                   "contacts": [
+     *                     {
+     *                       "email": "person1&#64;company.com"
+     *                     },
+     *                     {
+     *                       "email": "person2&#64;company.com"
+     *                     }
+     *                   ]
+     *                 }
+     *               }
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Compliance>|\Google\Protobuf\Internal\RepeatedField $compliances
+     *           Contains compliance information for security standards associated to the
+     *           finding.
+     *     @type string $description
+     *           Contains more detail about the finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\Exfiltration $exfiltration
+     *           Represents exfiltration associated with the Finding.
+     *     @type array<\Google\Cloud\SecurityCenter\V1\IamBinding>|\Google\Protobuf\Internal\RepeatedField $iam_bindings
+     *           Represents IAM bindings associated with the Finding.
+     *     @type string $next_steps
+     *           Next steps associate to the finding.
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Container>|\Google\Protobuf\Internal\RepeatedField $containers
+     *           Containers associated with the finding. containers provides information
+     *           for both Kubernetes and non-Kubernetes containers.
+     *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes $kubernetes
+     *           Kubernetes resources associated with the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -531,11 +671,12 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the event took place, or when an update to the finding
-     * occurred. For example, if the finding represents an open firewall it would
-     * capture the time the detector believes the firewall became open. The
-     * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved. Must not
+     * The time the finding was first detected. If an existing finding is updated,
+     * then this is the time the update occurred.
+     * For example, if the finding represents an open firewall, this property
+     * captures the time the detector believes the firewall became open. The
+     * accuracy is determined by the detector. If the finding is later resolved,
+     * then this time reflects when the finding was resolved. This must not
      * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
@@ -557,11 +698,12 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the event took place, or when an update to the finding
-     * occurred. For example, if the finding represents an open firewall it would
-     * capture the time the detector believes the firewall became open. The
-     * accuracy is determined by the detector. If the finding were to be resolved
-     * afterward, this time would reflect when the finding was resolved. Must not
+     * The time the finding was first detected. If an existing finding is updated,
+     * then this is the time the update occurred.
+     * For example, if the finding represents an open firewall, this property
+     * captures the time the detector believes the firewall became open. The
+     * accuracy is determined by the detector. If the finding is later resolved,
+     * then this time reflects when the finding was resolved. This must not
      * be set to a value greater than the current timestamp.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 9;</code>
@@ -677,8 +819,9 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates the mute state of a finding (either unspecified, muted, unmuted
-     * or undefined).
+     * Indicates the mute state of a finding (either muted, unmuted
+     * or undefined). Unlike other attributes of a finding, a finding provider
+     * shouldn't set the value of mute.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.Mute mute = 15;</code>
      * @return int
@@ -689,8 +832,9 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates the mute state of a finding (either unspecified, muted, unmuted
-     * or undefined).
+     * Indicates the mute state of a finding (either muted, unmuted
+     * or undefined). Unlike other attributes of a finding, a finding provider
+     * shouldn't set the value of mute.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Finding.Mute mute = 15;</code>
      * @param int $var
@@ -879,9 +1023,112 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * MITRE ATT&CK tactics and techniques related to this finding.
+     * See: https://attack.mitre.org
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.MitreAttack mitre_attack = 25;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\MitreAttack|null
+     */
+    public function getMitreAttack()
+    {
+        return $this->mitre_attack;
+    }
+
+    public function hasMitreAttack()
+    {
+        return isset($this->mitre_attack);
+    }
+
+    public function clearMitreAttack()
+    {
+        unset($this->mitre_attack);
+    }
+
+    /**
+     * MITRE ATT&CK tactics and techniques related to this finding.
+     * See: https://attack.mitre.org
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.MitreAttack mitre_attack = 25;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\MitreAttack $var
+     * @return $this
+     */
+    public function setMitreAttack($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\MitreAttack::class);
+        $this->mitre_attack = $var;
+
+        return $this;
+    }
+
+    /**
+     * Access details associated to the Finding, such as more information on the
+     * caller, which method was accessed, from where, etc.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Access access = 26;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Access|null
+     */
+    public function getAccess()
+    {
+        return $this->access;
+    }
+
+    public function hasAccess()
+    {
+        return isset($this->access);
+    }
+
+    public function clearAccess()
+    {
+        unset($this->access);
+    }
+
+    /**
+     * Access details associated to the Finding, such as more information on the
+     * caller, which method was accessed, from where, etc.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Access access = 26;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Access $var
+     * @return $this
+     */
+    public function setAccess($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Access::class);
+        $this->access = $var;
+
+        return $this;
+    }
+
+    /**
+     * Contains information about the IP connection associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Connection connections = 31;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getConnections()
+    {
+        return $this->connections;
+    }
+
+    /**
+     * Contains information about the IP connection associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Connection connections = 31;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V1\Connection>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setConnections($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Connection::class);
+        $this->connections = $arr;
+
+        return $this;
+    }
+
+    /**
      * First known as mute_annotation. Records additional information about the
      * mute operation e.g. mute config that muted the finding, user who muted the
-     * finding, etc.
+     * finding, etc. Unlike other attributes of a finding, a finding provider
+     * shouldn't set the value of mute.
      *
      * Generated from protobuf field <code>string mute_initiator = 28;</code>
      * @return string
@@ -894,7 +1141,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     /**
      * First known as mute_annotation. Records additional information about the
      * mute operation e.g. mute config that muted the finding, user who muted the
-     * finding, etc.
+     * finding, etc. Unlike other attributes of a finding, a finding provider
+     * shouldn't set the value of mute.
      *
      * Generated from protobuf field <code>string mute_initiator = 28;</code>
      * @param string $var
@@ -904,6 +1152,294 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->mute_initiator = $var;
+
+        return $this;
+    }
+
+    /**
+     * Represents operating system processes associated with the Finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Process processes = 30;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getProcesses()
+    {
+        return $this->processes;
+    }
+
+    /**
+     * Represents operating system processes associated with the Finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Process processes = 30;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V1\Process>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setProcesses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Process::class);
+        $this->processes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Map containing the point of contacts for the given finding. The key
+     * represents the type of contact, while the value contains a list of all the
+     * contacts that pertain. Please refer to:
+     * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
+     *     {
+     *       "security": {
+     *         "contacts": [
+     *           {
+     *             "email": "person1&#64;company.com"
+     *           },
+     *           {
+     *             "email": "person2&#64;company.com"
+     *           }
+     *         ]
+     *       }
+     *     }
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ContactDetails> contacts = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * Output only. Map containing the point of contacts for the given finding. The key
+     * represents the type of contact, while the value contains a list of all the
+     * contacts that pertain. Please refer to:
+     * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
+     *     {
+     *       "security": {
+     *         "contacts": [
+     *           {
+     *             "email": "person1&#64;company.com"
+     *           },
+     *           {
+     *             "email": "person2&#64;company.com"
+     *           }
+     *         ]
+     *       }
+     *     }
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ContactDetails> contacts = 33 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setContacts($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\ContactDetails::class);
+        $this->contacts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Contains compliance information for security standards associated to the
+     * finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Compliance compliances = 34;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCompliances()
+    {
+        return $this->compliances;
+    }
+
+    /**
+     * Contains compliance information for security standards associated to the
+     * finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Compliance compliances = 34;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V1\Compliance>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCompliances($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Compliance::class);
+        $this->compliances = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Contains more detail about the finding.
+     *
+     * Generated from protobuf field <code>string description = 37;</code>
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Contains more detail about the finding.
+     *
+     * Generated from protobuf field <code>string description = 37;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDescription($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Represents exfiltration associated with the Finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Exfiltration exfiltration = 38;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Exfiltration|null
+     */
+    public function getExfiltration()
+    {
+        return $this->exfiltration;
+    }
+
+    public function hasExfiltration()
+    {
+        return isset($this->exfiltration);
+    }
+
+    public function clearExfiltration()
+    {
+        unset($this->exfiltration);
+    }
+
+    /**
+     * Represents exfiltration associated with the Finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Exfiltration exfiltration = 38;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Exfiltration $var
+     * @return $this
+     */
+    public function setExfiltration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Exfiltration::class);
+        $this->exfiltration = $var;
+
+        return $this;
+    }
+
+    /**
+     * Represents IAM bindings associated with the Finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.IamBinding iam_bindings = 39;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getIamBindings()
+    {
+        return $this->iam_bindings;
+    }
+
+    /**
+     * Represents IAM bindings associated with the Finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.IamBinding iam_bindings = 39;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V1\IamBinding>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setIamBindings($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\IamBinding::class);
+        $this->iam_bindings = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Next steps associate to the finding.
+     *
+     * Generated from protobuf field <code>string next_steps = 40;</code>
+     * @return string
+     */
+    public function getNextSteps()
+    {
+        return $this->next_steps;
+    }
+
+    /**
+     * Next steps associate to the finding.
+     *
+     * Generated from protobuf field <code>string next_steps = 40;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNextSteps($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->next_steps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Containers associated with the finding. containers provides information
+     * for both Kubernetes and non-Kubernetes containers.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Container containers = 42;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getContainers()
+    {
+        return $this->containers;
+    }
+
+    /**
+     * Containers associated with the finding. containers provides information
+     * for both Kubernetes and non-Kubernetes containers.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Container containers = 42;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V1\Container>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setContainers($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Container::class);
+        $this->containers = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Kubernetes resources associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Kubernetes kubernetes = 43;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Kubernetes|null
+     */
+    public function getKubernetes()
+    {
+        return $this->kubernetes;
+    }
+
+    public function hasKubernetes()
+    {
+        return isset($this->kubernetes);
+    }
+
+    public function clearKubernetes()
+    {
+        unset($this->kubernetes);
+    }
+
+    /**
+     * Kubernetes resources associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Kubernetes kubernetes = 43;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Kubernetes $var
+     * @return $this
+     */
+    public function setKubernetes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Kubernetes::class);
+        $this->kubernetes = $var;
 
         return $this;
     }

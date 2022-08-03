@@ -87,6 +87,12 @@ class Entry extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
+     * Business Context of the entry. Not supported for BigQuery datasets
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BusinessContext business_context = 37;</code>
+     */
+    private $business_context = null;
+    /**
      * Schema of the entry. An entry might not have any schema attached to it.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Schema schema = 5;</code>
@@ -123,6 +129,12 @@ class Entry extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataSource data_source = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $data_source = null;
+    /**
+     * Output only. Additional information related to the entry. Private to the current user.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.PersonalDetails personal_details = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $personal_details = null;
     protected $entry_type;
     protected $system;
     protected $type_spec;
@@ -210,6 +222,9 @@ class Entry extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataCatalog\V1\RoutineSpec $routine_spec
      *           Specification that applies to a user-defined function or procedure. Valid
      *           only for entries with the `ROUTINE` type.
+     *     @type \Google\Cloud\DataCatalog\V1\FilesetSpec $fileset_spec
+     *           Specification that applies to a fileset resource. Valid only
+     *           for entries with the `FILESET` type.
      *     @type string $display_name
      *           Display name of an entry.
      *           The name must contain only Unicode letters, numbers (0-9), underscores (_),
@@ -224,6 +239,8 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           (CR), and page breaks (FF).
      *           The maximum size is 2000 bytes when encoded in UTF-8.
      *           Default value is an empty string.
+     *     @type \Google\Cloud\DataCatalog\V1\BusinessContext $business_context
+     *           Business Context of the entry. Not supported for BigQuery datasets
      *     @type \Google\Cloud\DataCatalog\V1\Schema $schema
      *           Schema of the entry. An entry might not have any schema attached to it.
      *     @type \Google\Cloud\DataCatalog\V1\SystemTimestamps $source_system_timestamps
@@ -241,6 +258,8 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           system.
      *     @type \Google\Cloud\DataCatalog\V1\DataSource $data_source
      *           Output only. Physical location of the entry.
+     *     @type \Google\Cloud\DataCatalog\V1\PersonalDetails $personal_details
+     *           Output only. Additional information related to the entry. Private to the current user.
      * }
      */
     public function __construct($data = NULL) {
@@ -737,6 +756,39 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Specification that applies to a fileset resource. Valid only
+     * for entries with the `FILESET` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FilesetSpec fileset_spec = 33;</code>
+     * @return \Google\Cloud\DataCatalog\V1\FilesetSpec|null
+     */
+    public function getFilesetSpec()
+    {
+        return $this->readOneof(33);
+    }
+
+    public function hasFilesetSpec()
+    {
+        return $this->hasOneof(33);
+    }
+
+    /**
+     * Specification that applies to a fileset resource. Valid only
+     * for entries with the `FILESET` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FilesetSpec fileset_spec = 33;</code>
+     * @param \Google\Cloud\DataCatalog\V1\FilesetSpec $var
+     * @return $this
+     */
+    public function setFilesetSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\FilesetSpec::class);
+        $this->writeOneof(33, $var);
+
+        return $this;
+    }
+
+    /**
      * Display name of an entry.
      * The name must contain only Unicode letters, numbers (0-9), underscores (_),
      * dashes (-), spaces ( ), and can't start or end with spaces.
@@ -804,6 +856,42 @@ class Entry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * Business Context of the entry. Not supported for BigQuery datasets
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BusinessContext business_context = 37;</code>
+     * @return \Google\Cloud\DataCatalog\V1\BusinessContext|null
+     */
+    public function getBusinessContext()
+    {
+        return $this->business_context;
+    }
+
+    public function hasBusinessContext()
+    {
+        return isset($this->business_context);
+    }
+
+    public function clearBusinessContext()
+    {
+        unset($this->business_context);
+    }
+
+    /**
+     * Business Context of the entry. Not supported for BigQuery datasets
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BusinessContext business_context = 37;</code>
+     * @param \Google\Cloud\DataCatalog\V1\BusinessContext $var
+     * @return $this
+     */
+    public function setBusinessContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\BusinessContext::class);
+        $this->business_context = $var;
 
         return $this;
     }
@@ -988,6 +1076,42 @@ class Entry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\DataSource::class);
         $this->data_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Additional information related to the entry. Private to the current user.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.PersonalDetails personal_details = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DataCatalog\V1\PersonalDetails|null
+     */
+    public function getPersonalDetails()
+    {
+        return $this->personal_details;
+    }
+
+    public function hasPersonalDetails()
+    {
+        return isset($this->personal_details);
+    }
+
+    public function clearPersonalDetails()
+    {
+        unset($this->personal_details);
+    }
+
+    /**
+     * Output only. Additional information related to the entry. Private to the current user.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.PersonalDetails personal_details = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DataCatalog\V1\PersonalDetails $var
+     * @return $this
+     */
+    public function setPersonalDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\PersonalDetails::class);
+        $this->personal_details = $var;
 
         return $this;
     }

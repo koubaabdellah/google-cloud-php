@@ -25,10 +25,24 @@
 namespace Google\Cloud\Monitoring\V3;
 
 use Google\Cloud\Monitoring\V3\Gapic\GroupServiceGapicClient;
+use Google\ApiCore\PathTemplate;
 
 /** {@inheritdoc} */
 class GroupServiceClient extends GroupServiceGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual additions to
-    // the generated {@see GroupServiceGapicClient} class.
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project resource.
+     *
+     * @param string $project
+     *
+     * @return string The formatted project resource.
+     * @deprecated
+     */
+    public static function projectName($project)
+    {
+        return (new PathTemplate('projects/{project}'))->render([
+            'project' => $project,
+        ]);
+    }
 }

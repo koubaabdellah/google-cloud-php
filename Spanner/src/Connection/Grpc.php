@@ -27,6 +27,7 @@ use Google\Cloud\Core\LongRunning\OperationResponseTrait;
 use Google\Cloud\Spanner\Admin\Database\V1\Backup;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateBackupMetadata;
+use Google\Cloud\Spanner\Admin\Database\V1\CopyBackupMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\CreateDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\Database;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
@@ -55,7 +56,7 @@ use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\PartitionedDml;
-use Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly;
+use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
@@ -65,6 +66,7 @@ use Google\Protobuf\GPBEmpty;
 use Google\Protobuf\ListValue;
 use Google\Protobuf\Struct;
 use Google\Protobuf\Value;
+use Google\Protobuf\Timestamp;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -142,6 +144,10 @@ class Grpc implements ConnectionInterface
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata',
             'message' => CreateBackupMetadata::class
         ], [
+            'method' => 'copyBackup',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CopyBackupMetadata',
+            'message' => CopyBackupMetadata::class
+        ], [
             'method' => 'restoreDatabase',
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.RestoreDatabaseMetadata',
             'message' => RestoreDatabaseMetadata::class
@@ -217,13 +223,14 @@ class Grpc implements ConnectionInterface
             'queryOptions' => []
         ];
         if ((bool) $config['emulatorHost']) {
-            $grpcConfig += $this->emulatorGapicConfig($config['emulatorHost']);
-        } else {
-            $this->credentialsWrapper = $grpcConfig['credentials'];
-            if (isset($config['apiEndpoint'])) {
-                $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
-            }
+            $grpcConfig = array_merge(
+                $grpcConfig,
+                $this->emulatorGapicConfig($config['emulatorHost'])
+            );
+        } elseif (isset($config['apiEndpoint'])) {
+            $grpcConfig['apiEndpoint'] = $config['apiEndpoint'];
         }
+        $this->credentialsWrapper = $grpcConfig['credentials'];
 
         $this->defaultQueryOptions = $config['queryOptions'];
 
@@ -502,6 +509,27 @@ class Grpc implements ConnectionInterface
             $instanceName,
             $this->pluck('backupId', $args),
             $backupInfo,
+            $this->addResourcePrefixHeader($args, $instanceName)
+        ]);
+
+        return $this->operationToArray($res, $this->serializer, $this->lroResponseMappers);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function copyBackup(array $args)
+    {
+        $instanceName = $this->pluck('instance', $args);
+        $expireTime = new Timestamp(
+            $this->formatTimestampForApi($this->pluck('expireTime', $args))
+        );
+
+        $res = $this->send([$this->getDatabaseAdminClient(), 'copyBackup'], [
+            $instanceName,
+            $this->pluck('backupId', $args),
+            $this->pluck('sourceBackupId', $args),
+            $expireTime,
             $this->addResourcePrefixHeader($args, $instanceName)
         ]);
 
@@ -891,11 +919,13 @@ class Grpc implements ConnectionInterface
     public function beginTransaction(array $args)
     {
         $options = new TransactionOptions;
-
         $transactionOptions = $this->formatTransactionOptions($this->pluck('transactionOptions', $args));
         if (isset($transactionOptions['readOnly'])) {
+            $readOnlyClass = PHP_VERSION_ID >= 80100
+                ? PBReadOnly::class
+                : 'Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly';
             $readOnly = $this->serializer->decodeMessage(
-                new ReadOnly(),
+                new $readOnlyClass(),
                 $transactionOptions['readOnly']
             );
             $options->setReadOnly($readOnly);
