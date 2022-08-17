@@ -27,7 +27,7 @@ class AvroSerializationOptions extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool enable_display_name_attribute = 1;</code>
      */
-    protected $enable_display_name_attribute = false;
+    private $enable_display_name_attribute = false;
 
     /**
      * Constructor.
