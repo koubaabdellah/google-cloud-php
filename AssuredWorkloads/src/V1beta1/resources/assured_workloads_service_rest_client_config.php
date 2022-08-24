@@ -38,22 +38,6 @@ return [
                     ],
                 ],
             ],
-            'UpdateWorkload' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1beta1/{workload.name=organizations/*/locations/*/workloads/*}',
-                'body' => 'workload',
-                'placeholders' => [
-                    'workload.name' => [
-                        'getters' => [
-                            'getWorkload',
-                            'getName',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'update_mask',
-                ],
-            ],
         ],
         'google.longrunning.Operations' => [
             'GetOperation' => [

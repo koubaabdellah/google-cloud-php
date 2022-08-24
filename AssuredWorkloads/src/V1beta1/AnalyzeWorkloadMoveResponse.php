@@ -9,16 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response with the analysis if the source workload can be moved to the target
- * workload
+ * A response that includes the analysis of the hypothetical resource move.
  *
  * Generated from protobuf message <code>google.cloud.assuredworkloads.v1beta1.AnalyzeWorkloadMoveResponse</code>
  */
 class AnalyzeWorkloadMoveResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * List of blockers that prevent moving the source workload to the target
-     * workload
+     * A list of blockers that should be addressed before moving the source
+     * project or project-based workload to the destination folder-based workload.
      *
      * Generated from protobuf field <code>repeated string blockers = 1;</code>
      */
@@ -31,8 +30,8 @@ class AnalyzeWorkloadMoveResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blockers
-     *           List of blockers that prevent moving the source workload to the target
-     *           workload
+     *           A list of blockers that should be addressed before moving the source
+     *           project or project-based workload to the destination folder-based workload.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +40,8 @@ class AnalyzeWorkloadMoveResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of blockers that prevent moving the source workload to the target
-     * workload
+     * A list of blockers that should be addressed before moving the source
+     * project or project-based workload to the destination folder-based workload.
      *
      * Generated from protobuf field <code>repeated string blockers = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -53,8 +52,8 @@ class AnalyzeWorkloadMoveResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * List of blockers that prevent moving the source workload to the target
-     * workload
+     * A list of blockers that should be addressed before moving the source
+     * project or project-based workload to the destination folder-based workload.
      *
      * Generated from protobuf field <code>repeated string blockers = 1;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

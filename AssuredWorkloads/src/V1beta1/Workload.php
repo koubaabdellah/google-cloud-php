@@ -57,7 +57,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * Input only. The billing account used for the resources which are
+     * Output only. The billing account used for the resources which are
      * direct children of workload. This billing account is initially associated
      * with the resources created as part of Workload creation.
      * After the initial creation of these resources, the customer can change
@@ -66,7 +66,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      * `billingAccounts/{billing_account_id}`. For example,
      * `billingAccounts/012345-567890-ABCDEF`.
      *
-     * Generated from protobuf field <code>string billing_account = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string billing_account = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $billing_account = '';
     /**
@@ -162,7 +162,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Immutable. The Workload creation timestamp.
      *     @type string $billing_account
-     *           Input only. The billing account used for the resources which are
+     *           Output only. The billing account used for the resources which are
      *           direct children of workload. This billing account is initially associated
      *           with the resources created as part of Workload creation.
      *           After the initial creation of these resources, the customer can change
@@ -377,7 +377,7 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The billing account used for the resources which are
+     * Output only. The billing account used for the resources which are
      * direct children of workload. This billing account is initially associated
      * with the resources created as part of Workload creation.
      * After the initial creation of these resources, the customer can change
@@ -386,7 +386,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      * `billingAccounts/{billing_account_id}`. For example,
      * `billingAccounts/012345-567890-ABCDEF`.
      *
-     * Generated from protobuf field <code>string billing_account = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string billing_account = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getBillingAccount()
@@ -395,7 +395,7 @@ class Workload extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The billing account used for the resources which are
+     * Output only. The billing account used for the resources which are
      * direct children of workload. This billing account is initially associated
      * with the resources created as part of Workload creation.
      * After the initial creation of these resources, the customer can change
@@ -404,7 +404,7 @@ class Workload extends \Google\Protobuf\Internal\Message
      * `billingAccounts/{billing_account_id}`. For example,
      * `billingAccounts/012345-567890-ABCDEF`.
      *
-     * Generated from protobuf field <code>string billing_account = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
+     * Generated from protobuf field <code>string billing_account = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

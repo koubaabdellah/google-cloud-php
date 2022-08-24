@@ -35,7 +35,6 @@ use Google\Cloud\AssuredWorkloads\V1beta1\AssuredWorkloadsServiceClient;
 use Google\Cloud\AssuredWorkloads\V1beta1\ListWorkloadsResponse;
 use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest\RestrictionType;
 use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesResponse;
-use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesResponse;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload\ComplianceRegime;
 use Google\LongRunning\GetOperationRequest;
@@ -549,72 +548,6 @@ class AssuredWorkloadsServiceClientTest extends GeneratedTest
         $restrictionType = RestrictionType::RESTRICTION_TYPE_UNSPECIFIED;
         try {
             $gapicClient->restrictAllowedResources($name, $restrictionType);
-            // If the $gapicClient method call did not throw, fail the test
-            $this->fail('Expected an ApiException, but no exception was thrown.');
-        } catch (ApiException $ex) {
-            $this->assertEquals($status->code, $ex->getCode());
-            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
-        }
-        // Call popReceivedCalls to ensure the stub is exhausted
-        $transport->popReceivedCalls();
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function restrictAllowedServicesTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        // Mock response
-        $expectedResponse = new RestrictAllowedServicesResponse();
-        $transport->addResponse($expectedResponse);
-        // Mock request
-        $name = 'name3373707';
-        $restrictionType = \Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesRequest\RestrictionType::RESTRICTION_TYPE_UNSPECIFIED;
-        $response = $gapicClient->restrictAllowedServices($name, $restrictionType);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/RestrictAllowedServices', $actualFuncCall);
-        $actualValue = $actualRequestObject->getName();
-        $this->assertProtobufEquals($name, $actualValue);
-        $actualValue = $actualRequestObject->getRestrictionType();
-        $this->assertProtobufEquals($restrictionType, $actualValue);
-        $this->assertTrue($transport->isExhausted());
-    }
-
-    /**
-     * @test
-     */
-    public function restrictAllowedServicesExceptionTest()
-    {
-        $transport = $this->createTransport();
-        $gapicClient = $this->createClient([
-            'transport' => $transport,
-        ]);
-        $this->assertTrue($transport->isExhausted());
-        $status = new stdClass();
-        $status->code = Code::DATA_LOSS;
-        $status->details = 'internal error';
-        $expectedExceptionMessage  = json_encode([
-            'message' => 'internal error',
-            'code' => Code::DATA_LOSS,
-            'status' => 'DATA_LOSS',
-            'details' => [],
-        ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-        // Mock request
-        $name = 'name3373707';
-        $restrictionType = \Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesRequest\RestrictionType::RESTRICTION_TYPE_UNSPECIFIED;
-        try {
-            $gapicClient->restrictAllowedServices($name, $restrictionType);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

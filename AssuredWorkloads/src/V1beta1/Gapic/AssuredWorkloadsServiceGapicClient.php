@@ -49,8 +49,6 @@ use Google\Cloud\AssuredWorkloads\V1beta1\ListWorkloadsResponse;
 use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest;
 use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesRequest\RestrictionType;
 use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedResourcesResponse;
-use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesRequest;
-use Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesResponse;
 use Google\Cloud\AssuredWorkloads\V1beta1\UpdateWorkloadRequest;
 use Google\Cloud\AssuredWorkloads\V1beta1\Workload;
 use Google\LongRunning\Operation;
@@ -352,8 +350,8 @@ class AssuredWorkloadsServiceGapicClient
     }
 
     /**
-     * Analyze if the source Assured Workloads can be moved to the target Assured
-     * Workload
+     * A request to analyze a hypothetical move of a source project or
+     * project-based workload to a target (destination) folder-based workload.
      *
      * Sample code:
      * ```
@@ -366,29 +364,28 @@ class AssuredWorkloadsServiceGapicClient
      * }
      * ```
      *
-     * @param string $target       Required. The resource name of the Workload to fetch. This is the workloads's
-     *                             relative path in the API, formatted as
-     *                             "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}".
-     *                             For example,
-     *                             "organizations/123/locations/us-east1/workloads/assured-workload-2".
+     * @param string $target       Required. The resource ID of the folder-based destination workload. This workload is
+     *                             where the source project will hypothetically be moved to. Specify the
+     *                             workload's relative resource name, formatted as:
+     *                             "organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}"
+     *                             For example:
+     *                             "organizations/123/locations/us-east1/workloads/assured-workload-2"
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $source
-     *           The Source is project based Workload to be moved. This is the workloads's
-     *           relative path in the API, formatted as
-     *           "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}".
-     *           For example,
-     *           "organizations/123/locations/us-east1/workloads/assured-workload-1".
+     *           The source type is a project-based workload. Specify the workloads's
+     *           relative resource name, formatted as:
+     *           "organizations/{ORGANIZATION_ID}/locations/{LOCATION_ID}/workloads/{WORKLOAD_ID}"
+     *           For example:
+     *           "organizations/123/locations/us-east1/workloads/assured-workload-1"
      *     @type string $project
-     *           The Source is a project based to be moved.
-     *           This is the project's relative path in the API, formatted as
-     *           "cloudresourcemanager.googleapis.com/projects/{project_number}"
-     *           "projects/{project_number}"
-     *           "cloudresourcemanager.googleapis.com/projects/{project_id}"
-     *           "projects/{project_id}"
-     *           For example,
-     *           "organizations/123/locations/us-east1/workloads/assured-workload-1".
+     *           The source type is a project. Specify the project's relative resource
+     *           name, formatted as either a project number or a project ID:
+     *           "projects/{PROJECT_NUMBER}" or "projects/{PROJECT_ID}"
+     *           For example:
+     *           "projects/951040570662" when specifying a project number, or
+     *           "projects/my-project-123" when specifying a project ID.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -718,56 +715,6 @@ class AssuredWorkloadsServiceGapicClient
     }
 
     /**
-     * Restrict the list of services allowed in the Workload environment.
-     * The current list of allowed services can be found at
-     * https://cloud.google.com/assured-workloads/docs/supported-products
-     * In addition to assuredworkloads.workload.update permission, the user should
-     * also have orgpolicy.policy.set permission on the folder resource
-     * to use this functionality.
-     *
-     * Sample code:
-     * ```
-     * $assuredWorkloadsServiceClient = new AssuredWorkloadsServiceClient();
-     * try {
-     *     $name = 'name';
-     *     $restrictionType = RestrictionType::RESTRICTION_TYPE_UNSPECIFIED;
-     *     $response = $assuredWorkloadsServiceClient->restrictAllowedServices($name, $restrictionType);
-     * } finally {
-     *     $assuredWorkloadsServiceClient->close();
-     * }
-     * ```
-     *
-     * @param string $name            Required. The resource name of the Workload. This is the workloads's
-     *                                relative path in the API, formatted as
-     *                                "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}".
-     *                                For example,
-     *                                "organizations/123/locations/us-east1/workloads/assured-workload-1".
-     * @param int    $restrictionType Required. The type of restriction for using gcp services in the Workload environment.
-     *                                For allowed values, use constants defined on {@see \Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesRequest\RestrictionType}
-     * @param array  $optionalArgs    {
-     *     Optional.
-     *
-     *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
-     *           associative array of retry settings parameters. See the documentation on
-     *           {@see RetrySettings} for example usage.
-     * }
-     *
-     * @return \Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesResponse
-     *
-     * @throws ApiException if the remote call fails
-     *
-     * @experimental
-     */
-    public function restrictAllowedServices($name, $restrictionType, array $optionalArgs = [])
-    {
-        $request = new RestrictAllowedServicesRequest();
-        $request->setName($name);
-        $request->setRestrictionType($restrictionType);
-        return $this->startCall('RestrictAllowedServices', RestrictAllowedServicesResponse::class, $optionalArgs, $request)->wait();
-    }
-
-    /**
      * Updates an existing workload.
      * Currently allows updating of workload display_name and labels.
      * For force updates don't set etag field in the Workload.
@@ -808,12 +755,8 @@ class AssuredWorkloadsServiceGapicClient
     public function updateWorkload($workload, $updateMask, array $optionalArgs = [])
     {
         $request = new UpdateWorkloadRequest();
-        $requestParamHeaders = [];
         $request->setWorkload($workload);
         $request->setUpdateMask($updateMask);
-        $requestParamHeaders['workload.name'] = $workload->getName();
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateWorkload', Workload::class, $optionalArgs, $request)->wait();
     }
 }

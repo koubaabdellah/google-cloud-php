@@ -66,26 +66,6 @@ class AssuredWorkloadsServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Restrict the list of services allowed in the Workload environment.
-     * The current list of allowed services can be found at
-     * https://cloud.google.com/assured-workloads/docs/supported-products
-     * In addition to assuredworkloads.workload.update permission, the user should
-     * also have orgpolicy.policy.set permission on the folder resource
-     * to use this functionality.
-     * @param \Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function RestrictAllowedServices(\Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.assuredworkloads.v1beta1.AssuredWorkloadsService/RestrictAllowedServices',
-        $argument,
-        ['\Google\Cloud\AssuredWorkloads\V1beta1\RestrictAllowedServicesResponse', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
      * Restrict the list of resources allowed in the Workload environment.
      * The current list of allowed products can be found at
      * https://cloud.google.com/assured-workloads/docs/supported-products
@@ -141,8 +121,8 @@ class AssuredWorkloadsServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Analyze if the source Assured Workloads can be moved to the target Assured
-     * Workload
+     * A request to analyze a hypothetical move of a source project or
+     * project-based workload to a target (destination) folder-based workload.
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\AnalyzeWorkloadMoveRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
