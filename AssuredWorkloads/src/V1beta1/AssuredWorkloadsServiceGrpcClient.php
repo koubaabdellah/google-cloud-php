@@ -121,8 +121,8 @@ class AssuredWorkloadsServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * A request to analyze a hypothetical move of a source project or
-     * project-based workload to a target (destination) folder-based workload.
+     * Analyze if the source Assured Workloads can be moved to the target Assured
+     * Workload
      * @param \Google\Cloud\AssuredWorkloads\V1beta1\AnalyzeWorkloadMoveRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

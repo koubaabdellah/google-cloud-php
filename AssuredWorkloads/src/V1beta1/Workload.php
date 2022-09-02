@@ -133,6 +133,15 @@ class Workload extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.assuredworkloads.v1beta1.Workload.SaaEnrollmentResponse saa_enrollment_response = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $saa_enrollment_response = null;
+    /**
+     * Output only. Urls for services which are compliant for this Assured Workload, but which
+     * are currently disallowed by the ResourceUsageRestriction org policy.
+     * Invoke RestrictAllowedResources endpoint to allow your project developers
+     * to use these services in their environment."
+     *
+     * Generated from protobuf field <code>repeated string compliant_but_disallowed_services = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $compliant_but_disallowed_services;
     protected $compliance_regime_settings;
 
     /**
@@ -209,6 +218,11 @@ class Workload extends \Google\Protobuf\Internal\Message
      *           Output only. Represents the SAA enrollment response of the given workload.
      *           SAA enrollment response is queried during GetWorkload call.
      *           In failure cases, user friendly error message is shown in SAA details page.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $compliant_but_disallowed_services
+     *           Output only. Urls for services which are compliant for this Assured Workload, but which
+     *           are currently disallowed by the ResourceUsageRestriction org policy.
+     *           Invoke RestrictAllowedResources endpoint to allow your project developers
+     *           to use these services in their environment."
      * }
      */
     public function __construct($data = NULL) {
@@ -820,6 +834,38 @@ class Workload extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AssuredWorkloads\V1beta1\Workload\SaaEnrollmentResponse::class);
         $this->saa_enrollment_response = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Urls for services which are compliant for this Assured Workload, but which
+     * are currently disallowed by the ResourceUsageRestriction org policy.
+     * Invoke RestrictAllowedResources endpoint to allow your project developers
+     * to use these services in their environment."
+     *
+     * Generated from protobuf field <code>repeated string compliant_but_disallowed_services = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCompliantButDisallowedServices()
+    {
+        return $this->compliant_but_disallowed_services;
+    }
+
+    /**
+     * Output only. Urls for services which are compliant for this Assured Workload, but which
+     * are currently disallowed by the ResourceUsageRestriction org policy.
+     * Invoke RestrictAllowedResources endpoint to allow your project developers
+     * to use these services in their environment."
+     *
+     * Generated from protobuf field <code>repeated string compliant_but_disallowed_services = 24 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCompliantButDisallowedServices($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->compliant_but_disallowed_services = $arr;
 
         return $this;
     }
