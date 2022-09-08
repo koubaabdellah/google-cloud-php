@@ -707,6 +707,10 @@ class BigQueryWriteGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type int $view
+     *           Indicates whether to get full or partial view of the WriteStream. If
+     *           not set, view returned will be basic.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\BigQuery\Storage\V1\WriteStreamView}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -723,6 +727,10 @@ class BigQueryWriteGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['view'])) {
+            $request->setView($optionalArgs['view']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );

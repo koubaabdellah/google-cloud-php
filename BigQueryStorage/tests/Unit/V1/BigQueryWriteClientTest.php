@@ -256,8 +256,10 @@ class BigQueryWriteClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $location = 'location1901043637';
         $expectedResponse = new WriteStream();
         $expectedResponse->setName($name);
+        $expectedResponse->setLocation($location);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->tableName('[PROJECT]', '[DATASET]', '[TABLE]');
@@ -452,8 +454,10 @@ class BigQueryWriteClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
+        $location = 'location1901043637';
         $expectedResponse = new WriteStream();
         $expectedResponse->setName($name2);
+        $expectedResponse->setLocation($location);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->writeStreamName('[PROJECT]', '[DATASET]', '[TABLE]', '[STREAM]');

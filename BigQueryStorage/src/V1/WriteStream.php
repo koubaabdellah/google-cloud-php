@@ -59,6 +59,14 @@ class WriteStream extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.storage.v1.WriteStream.WriteMode write_mode = 7 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $write_mode = 0;
+    /**
+     * Immutable. The geographic location where the stream's dataset resides. See
+     * https://cloud.google.com/bigquery/docs/locations for supported
+     * locations.
+     *
+     * Generated from protobuf field <code>string location = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $location = '';
 
     /**
      * Constructor.
@@ -86,6 +94,10 @@ class WriteStream extends \Google\Protobuf\Internal\Message
      *           The table schema could go out of date during the life time of the stream.
      *     @type int $write_mode
      *           Immutable. Mode of the stream.
+     *     @type string $location
+     *           Immutable. The geographic location where the stream's dataset resides. See
+     *           https://cloud.google.com/bigquery/docs/locations for supported
+     *           locations.
      * }
      */
     public function __construct($data = NULL) {
@@ -291,6 +303,36 @@ class WriteStream extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\BigQuery\Storage\V1\WriteStream\WriteMode::class);
         $this->write_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The geographic location where the stream's dataset resides. See
+     * https://cloud.google.com/bigquery/docs/locations for supported
+     * locations.
+     *
+     * Generated from protobuf field <code>string location = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Immutable. The geographic location where the stream's dataset resides. See
+     * https://cloud.google.com/bigquery/docs/locations for supported
+     * locations.
+     *
+     * Generated from protobuf field <code>string location = 8 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location = $var;
 
         return $this;
     }
