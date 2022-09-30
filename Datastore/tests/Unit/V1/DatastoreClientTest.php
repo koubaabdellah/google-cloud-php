@@ -36,6 +36,7 @@ use Google\Cloud\Datastore\V1\LookupResponse;
 use Google\Cloud\Datastore\V1\PartitionId;
 use Google\Cloud\Datastore\V1\ReserveIdsResponse;
 use Google\Cloud\Datastore\V1\RollbackResponse;
+use Google\Cloud\Datastore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Datastore\V1\RunQueryResponse;
 use Google\Rpc\Code;
 use stdClass;
@@ -463,6 +464,68 @@ class DatastoreClientTest extends GeneratedTest
         $transaction = '-34';
         try {
             $gapicClient->rollback($projectId, $transaction);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function runAggregationQueryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new RunAggregationQueryResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        $response = $gapicClient->runAggregationQuery($projectId);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.datastore.v1.Datastore/RunAggregationQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProjectId();
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function runAggregationQueryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $projectId = 'projectId-1969970175';
+        try {
+            $gapicClient->runAggregationQuery($projectId);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
