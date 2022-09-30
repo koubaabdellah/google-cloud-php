@@ -119,6 +119,8 @@ class Task extends \Google\Protobuf\Internal\Message
      *           Output only. Status of the latest task executions.
      *     @type \Google\Cloud\Dataplex\V1\Task\SparkTaskConfig $spark
      *           Config related to running custom Spark tasks.
+     *     @type \Google\Cloud\Dataplex\V1\Task\NotebookTaskConfig $notebook
+     *           Config related to running scheduled Notebooks.
      * }
      */
     public function __construct($data = NULL) {
@@ -495,6 +497,37 @@ class Task extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\Task\SparkTaskConfig::class);
         $this->writeOneof(300, $var);
+
+        return $this;
+    }
+
+    /**
+     * Config related to running scheduled Notebooks.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.NotebookTaskConfig notebook = 302;</code>
+     * @return \Google\Cloud\Dataplex\V1\Task\NotebookTaskConfig|null
+     */
+    public function getNotebook()
+    {
+        return $this->readOneof(302);
+    }
+
+    public function hasNotebook()
+    {
+        return $this->hasOneof(302);
+    }
+
+    /**
+     * Config related to running scheduled Notebooks.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.NotebookTaskConfig notebook = 302;</code>
+     * @param \Google\Cloud\Dataplex\V1\Task\NotebookTaskConfig $var
+     * @return $this
+     */
+    public function setNotebook($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\Task\NotebookTaskConfig::class);
+        $this->writeOneof(302, $var);
 
         return $this;
     }
