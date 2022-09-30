@@ -4,11 +4,6 @@
 
 namespace Google\Cloud\Firestore\V1\TransactionOptions;
 
-/**
- * @deprecated
- */
-class ReadOnly extends PBReadOnly
-{
-}
-
+class_exists(PBReadOnly::class); // autoload the new class, which will also create an alias to the deprecated class
 @trigger_error(__NAMESPACE__ . '\ReadOnly is deprecated and will be removed in the next major release. Use PBReadOnly instead', E_USER_DEPRECATED);
+
