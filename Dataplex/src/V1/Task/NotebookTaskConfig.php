@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Path to input notebook. This can be the GCS URI of the notebook file
-     * or the path to a Notebook Content.
-     * The execution args are accessible as environment variables
+     * Required. Path to input notebook. This can be the Cloud Storage URI of the notebook
+     * file or the path to a Notebook Content. The execution args are accessible
+     * as environment variables
      * (`TASK_key=value`).
      *
      * Generated from protobuf field <code>string notebook = 4 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -31,15 +31,15 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
      */
     private $infrastructure_spec = null;
     /**
-     * Optional. GCS URIs of files to be placed in the working directory of each
+     * Optional. Cloud Storage URIs of files to be placed in the working directory of each
      * executor.
      *
      * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $file_uris;
     /**
-     * Optional. GCS URIs of archives to be extracted into the working directory of
-     * each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and
+     * Optional. Cloud Storage URIs of archives to be extracted into the working directory
+     * of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and
      * .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -53,18 +53,18 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $notebook
-     *           Required. Path to input notebook. This can be the GCS URI of the notebook file
-     *           or the path to a Notebook Content.
-     *           The execution args are accessible as environment variables
+     *           Required. Path to input notebook. This can be the Cloud Storage URI of the notebook
+     *           file or the path to a Notebook Content. The execution args are accessible
+     *           as environment variables
      *           (`TASK_key=value`).
      *     @type \Google\Cloud\Dataplex\V1\Task\InfrastructureSpec $infrastructure_spec
      *           Optional. Infrastructure specification for the execution.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_uris
-     *           Optional. GCS URIs of files to be placed in the working directory of each
+     *           Optional. Cloud Storage URIs of files to be placed in the working directory of each
      *           executor.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $archive_uris
-     *           Optional. GCS URIs of archives to be extracted into the working directory of
-     *           each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and
+     *           Optional. Cloud Storage URIs of archives to be extracted into the working directory
+     *           of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and
      *           .zip.
      * }
      */
@@ -74,9 +74,9 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Path to input notebook. This can be the GCS URI of the notebook file
-     * or the path to a Notebook Content.
-     * The execution args are accessible as environment variables
+     * Required. Path to input notebook. This can be the Cloud Storage URI of the notebook
+     * file or the path to a Notebook Content. The execution args are accessible
+     * as environment variables
      * (`TASK_key=value`).
      *
      * Generated from protobuf field <code>string notebook = 4 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -88,9 +88,9 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Path to input notebook. This can be the GCS URI of the notebook file
-     * or the path to a Notebook Content.
-     * The execution args are accessible as environment variables
+     * Required. Path to input notebook. This can be the Cloud Storage URI of the notebook
+     * file or the path to a Notebook Content. The execution args are accessible
+     * as environment variables
      * (`TASK_key=value`).
      *
      * Generated from protobuf field <code>string notebook = 4 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -142,7 +142,7 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. GCS URIs of files to be placed in the working directory of each
+     * Optional. Cloud Storage URIs of files to be placed in the working directory of each
      * executor.
      *
      * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -154,7 +154,7 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. GCS URIs of files to be placed in the working directory of each
+     * Optional. Cloud Storage URIs of files to be placed in the working directory of each
      * executor.
      *
      * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -170,8 +170,8 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. GCS URIs of archives to be extracted into the working directory of
-     * each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and
+     * Optional. Cloud Storage URIs of archives to be extracted into the working directory
+     * of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and
      * .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -183,8 +183,8 @@ class NotebookTaskConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. GCS URIs of archives to be extracted into the working directory of
-     * each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and
+     * Optional. Cloud Storage URIs of archives to be extracted into the working directory
+     * of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and
      * .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>

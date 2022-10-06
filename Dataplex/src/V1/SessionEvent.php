@@ -48,11 +48,12 @@ class SessionEvent extends \Google\Protobuf\Internal\Message
      */
     private $event_succeeded = false;
     /**
-     * If the session is a warm pooled session.
+     * If the session is associated with an Environment with fast startup enabled,
+     * and was pre-created before being assigned to a user.
      *
-     * Generated from protobuf field <code>bool warm_pool_enabled = 7;</code>
+     * Generated from protobuf field <code>bool fast_startup_enabled = 7;</code>
      */
-    private $warm_pool_enabled = false;
+    private $fast_startup_enabled = false;
     /**
      * The idle duration of a warm pooled session before it is assigned to user.
      *
@@ -80,8 +81,9 @@ class SessionEvent extends \Google\Protobuf\Internal\Message
      *           The execution details of the query.
      *     @type bool $event_succeeded
      *           The status of the event.
-     *     @type bool $warm_pool_enabled
-     *           If the session is a warm pooled session.
+     *     @type bool $fast_startup_enabled
+     *           If the session is associated with an Environment with fast startup enabled,
+     *           and was pre-created before being assigned to a user.
      *     @type \Google\Protobuf\Duration $unassigned_duration
      *           The idle duration of a warm pooled session before it is assigned to user.
      * }
@@ -255,27 +257,29 @@ class SessionEvent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the session is a warm pooled session.
+     * If the session is associated with an Environment with fast startup enabled,
+     * and was pre-created before being assigned to a user.
      *
-     * Generated from protobuf field <code>bool warm_pool_enabled = 7;</code>
+     * Generated from protobuf field <code>bool fast_startup_enabled = 7;</code>
      * @return bool
      */
-    public function getWarmPoolEnabled()
+    public function getFastStartupEnabled()
     {
-        return $this->warm_pool_enabled;
+        return $this->fast_startup_enabled;
     }
 
     /**
-     * If the session is a warm pooled session.
+     * If the session is associated with an Environment with fast startup enabled,
+     * and was pre-created before being assigned to a user.
      *
-     * Generated from protobuf field <code>bool warm_pool_enabled = 7;</code>
+     * Generated from protobuf field <code>bool fast_startup_enabled = 7;</code>
      * @param bool $var
      * @return $this
      */
-    public function setWarmPoolEnabled($var)
+    public function setFastStartupEnabled($var)
     {
         GPBUtil::checkBool($var);
-        $this->warm_pool_enabled = $var;
+        $this->fast_startup_enabled = $var;
 
         return $this;
     }
